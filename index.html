@@ -2,1276 +2,1242 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>IPNOTEC VIP | STEP INTO THE FUTURE</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>IPNOTEC PINGG · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+/* =====================================================
+   ROOT VARIABLES — DARK GLASS THEME
+===================================================== */
 :root {
-  --v:#BF00FF; --i:#6A0EFF; --b:#00C8FF; --g:#39FF14;
-  --y:#FFE600; --o:#FF6200; --u:#FF00FF; --gr:#AAAAAA; --w:#FFFFFF;
-  --accent:#888888; --bg:#000;
+  /* VIBGYOR + extended */
+  --clr-v:#9d00ff; --clr-i:#5500cc; --clr-b:#00a2ff; --clr-g:#00e676;
+  --clr-y:#ffe600; --clr-o:#ff6200; --clr-r:#ff1744;
+  --clr-c:#00ffea; --clr-p:#ff00cc; --clr-w:#ffffff;
+  /* Glass palette */
+  --bg-deep:#040410;
+  --device-bg:rgba(8,8,22,0.88);
+  --panel-bg:rgba(255,255,255,0.025);
+  --panel-bg2:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --grey:#6e6e82; --grey2:#9a9ab0;
+  /* Fonts */
+  --f-display:'Orbitron',sans-serif;
+  --f-mono:'Share Tech Mono',monospace;
+  --f-body:'Exo 2',sans-serif;
+  /* Active user color (changes per user pick) */
+  --user-clr:#00a2ff;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{font-size:16px;height:100%;}
-body,html{width:100%;height:100%;background:#000;color:#fff;font-family:'Space Mono',monospace;overflow:hidden;}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px);pointer-events:none;z-index:10000;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;user-select:none;}
+body{font-family:var(--f-body);background:var(--bg-deep);min-height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden;position:relative;}
 
-/* ─── HEADER ─── */
-.hdr{position:fixed;top:0;left:0;width:100%;height:54px;background:rgba(0,0,0,0.96);border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:clamp(0.6rem,1.8vw,0.82rem);letter-spacing:clamp(3px,1vw,7px);z-index:5000;overflow:hidden;transition:border-color .6s;}
-.hdr::after{content:'';position:absolute;top:0;left:-80%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,200,255,.18),transparent);animation:hScan 3s linear infinite;}
-@keyframes hScan{to{left:160%;}}
-.hchar{display:inline-block;color:rgba(255,255,255,.22);animation:hpulse 4s ease-in-out infinite;}
-@keyframes hpulse{0%,100%{color:rgba(255,255,255,.22);}50%{color:#fff;text-shadow:0 0 12px #fff,0 0 25px var(--accent);}}
+/* SCANLINES */
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:9998;}
 
-/* ─── FOOTER ─── */
-footer{position:fixed;bottom:0;left:0;width:100%;height:64px;background:rgba(0,0,0,0.98);border-top:2px solid var(--accent);display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:0 18px;gap:8px;z-index:5000;transition:border-color .6s;}
-.ftr-logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(.85rem,3vw,1.05rem);letter-spacing:4px;color:var(--accent);text-shadow:0 0 18px var(--accent);transition:all .6s;white-space:nowrap;}
-.ftr-mid{text-align:center;font-family:'Orbitron',sans-serif;cursor:pointer;user-select:none;display:flex;flex-direction:column;align-items:center;gap:2px;}
-.ftr-launch-txt{font-size:clamp(.52rem,1.4vw,.68rem);letter-spacing:3px;color:rgba(255,255,255,.4);line-height:1;}
-.ftr-launch-txt strong{color:var(--accent);text-shadow:0 0 12px var(--accent);font-weight:900;transition:all .6s;}
-.ftr-date-reveal{font-size:.58rem;letter-spacing:2px;color:var(--y);text-shadow:0 0 10px var(--y);display:none;white-space:nowrap;}
-#countdown{font-size:clamp(.48rem,1.3vw,.6rem);letter-spacing:1px;color:var(--accent);text-shadow:0 0 8px var(--accent);font-weight:700;transition:color .6s;}
-.home-btn{font-family:'Space Mono',monospace;font-weight:700;color:var(--accent);border:2px solid var(--accent);padding:8px 12px;cursor:pointer;background:transparent;font-size:.85rem;transition:.2s;display:flex;align-items:center;gap:6px;white-space:nowrap;min-height:44px;}
-.home-btn:hover{background:var(--accent);color:#000;}
-.clock-face{display:inline-block;width:15px;height:15px;border:1.5px solid var(--accent);position:relative;vertical-align:middle;flex-shrink:0;transition:border-color .6s;}
-.clock-face::before{content:'';position:absolute;top:50%;left:50%;width:2px;height:2px;background:var(--accent);transform:translate(-50%,-50%);transition:background .6s;}
-.clock-hand{position:absolute;bottom:50%;left:50%;width:1.5px;height:42%;background:var(--accent);transform-origin:bottom center;margin-left:-.75px;box-shadow:0 0 3px var(--accent);transition:background .6s,box-shadow .6s;}
-.clock-cw .clock-hand{animation:handCW 2.4s linear infinite;}
-.clock-ccw .clock-hand{animation:handCCW 3s linear infinite;}
-@keyframes handCW{to{transform:rotate(360deg);}}
-@keyframes handCCW{to{transform:rotate(-360deg);}}
+/* AMBIENT ORBS */
+.orbs{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);animation:orbf 22s ease-in-out infinite alternate;}
+.orb:nth-child(1){width:500px;height:500px;background:rgba(157,0,255,0.07);top:-15%;left:-15%;}
+.orb:nth-child(2){width:400px;height:400px;background:rgba(0,162,255,0.06);bottom:-10%;right:-10%;animation-delay:-8s;}
+.orb:nth-child(3){width:300px;height:300px;background:rgba(0,230,118,0.05);top:35%;left:45%;animation-delay:-15s;}
+.orb:nth-child(4){width:250px;height:250px;background:rgba(255,0,204,0.04);top:60%;left:5%;animation-delay:-5s;}
+@keyframes orbf{0%{transform:translate(0,0) scale(1);}100%{transform:translate(25px,18px) scale(1.12);}}
 
-/* ─── CONTENT WRAPPER ─── */
-#cw{position:absolute;top:54px;left:0;width:100%;height:calc(100% - 118px);overflow:hidden;}
+/* =====================================================
+   DEVICE FRAME — BLACK GLASS PHONE
+===================================================== */
+.device{
+  width:min(424px,100vw);height:min(870px,100vh);
+  background:var(--device-bg);
+  backdrop-filter:blur(40px) saturate(180%);
+  -webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-radius:34px;
+  border:1px solid var(--border2);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(255,255,255,0.03),
+    0 40px 100px rgba(0,0,0,0.95),
+    0 0 80px rgba(0,0,30,0.5);
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+/* Side notch buttons */
+.device::before{content:'';position:absolute;right:-3px;top:120px;width:3px;height:50px;background:rgba(255,255,255,0.06);border-radius:0 3px 3px 0;}
+.device::after{content:'';position:absolute;right:-3px;top:185px;width:3px;height:35px;background:rgba(255,255,255,0.06);border-radius:0 3px 3px 0;}
 
-/* ─── SCREENS ─── */
-.screen{position:absolute;top:0;left:0;width:100%;height:100%;display:none;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
-.screen.active{display:flex;}
-.screen.scrollable{overflow-y:auto;justify-content:flex-start;padding:24px 16px;}
+/* EDGE INDICATOR — left side color flash */
+.edge-ind{
+  position:absolute;left:0;top:70px;width:4px;height:80px;
+  border-radius:0 4px 4px 0;opacity:0;
+  transition:opacity 0.4s ease,background-color 0.2s;
+  z-index:50;
+  box-shadow:0 0 16px currentColor;
+}
 
-/* ─── WORLD MAP ─── */
-.wmap{position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center;background-size:contain;opacity:.07;filter:invert(1) sepia(1) saturate(2) hue-rotate(170deg);pointer-events:none;}
+/* =====================================================
+   STATUS BAR
+===================================================== */
+.sb{
+  height:46px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;
+  background:rgba(0,0,0,0.35);
+  border-bottom:1px solid var(--border);
+  position:relative;z-index:30;
+  backdrop-filter:blur(20px);
+}
+.sb-left{display:flex;align-items:center;gap:10px;}
+.sb-logo{font-family:var(--f-display);font-size:11px;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,0.92);text-shadow:0 0 12px rgba(255,255,255,0.2);}
+/* 3-dot indicator */
+.sb-dots{display:flex;gap:6px;align-items:center;}
+.sdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.25);box-shadow:0 0 4px rgba(255,255,255,0.15);}
+.sdot:nth-child(1){animation:sdp 2s infinite;}
+.sdot:nth-child(2){animation:sdp 2s 0.3s infinite;}
+.sdot:nth-child(3){animation:sdp 2s 0.6s infinite;}
+@keyframes sdp{0%,100%{opacity:0.25;}50%{opacity:1;box-shadow:0 0 8px rgba(255,255,255,0.5);}}
+.sb-mode-badge{font-family:var(--f-mono);font-size:8px;padding:2px 7px;border-radius:10px;border:1px solid;letter-spacing:1px;}
+.sb-mode-badge.boot{background:rgba(0,162,255,0.1);color:var(--clr-b);border-color:rgba(0,162,255,0.3);}
+.sb-mode-badge.active{background:rgba(0,230,118,0.1);color:var(--clr-g);border-color:rgba(0,230,118,0.3);}
+.sb-mode-badge.exit{background:rgba(255,23,68,0.1);color:var(--clr-r);border-color:rgba(255,23,68,0.3);}
+.sb-right{display:flex;align-items:center;gap:10px;}
+.sb-time{font-family:var(--f-mono);font-size:12px;color:rgba(255,255,255,0.85);}
+.sb-bat{display:flex;align-items:center;gap:2px;opacity:0.7;}
+.bat{width:20px;height:10px;border:1.5px solid rgba(255,255,255,0.4);border-radius:2.5px;padding:1.5px;position:relative;}
+.bat::after{content:'';position:absolute;right:-4px;top:50%;transform:translateY(-50%);width:3px;height:6px;background:rgba(255,255,255,0.35);border-radius:0 1px 1px 0;}
+.bat-fill{height:100%;width:68%;background:var(--clr-g);border-radius:1px;}
+.sb-vol{cursor:pointer;font-size:10px;color:rgba(255,255,255,0.4);transition:color 0.2s;}
+.sb-vol:hover{color:rgba(255,255,255,0.8);}
 
-/* ─── LANDING ─── */
-.city-node{position:absolute;display:flex;flex-direction:column;align-items:center;opacity:.1;transition:opacity .5s,transform .5s;}
-.city-node.active{opacity:1;transform:scale(1.25);}
-.city-dot{width:9px;height:9px;}
-.city-code{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:2px;margin-top:4px;}
-.big-i{font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(8rem,28vw,14rem);color:var(--accent);text-shadow:0 0 40px var(--accent),0 0 90px var(--accent),0 0 140px var(--accent);position:relative;z-index:10;animation:bigIGlow 2s ease-in-out infinite;}
-@keyframes bigIGlow{0%,100%{text-shadow:0 0 40px var(--accent),0 0 80px var(--accent);}50%{text-shadow:0 0 70px var(--accent),0 0 130px var(--accent),0 0 220px var(--accent);}}
-.floating-phrase{position:absolute;font-family:'Orbitron',sans-serif;font-size:clamp(.6rem,1.8vw,.95rem);font-weight:700;letter-spacing:6px;opacity:0;text-shadow:0 0 20px currentColor;z-index:8;animation:phraseAnim 3s ease-in-out forwards;pointer-events:none;}
-@keyframes phraseAnim{0%{opacity:0;transform:translateY(10px);}20%{opacity:.7;}80%{opacity:.7;}100%{opacity:0;transform:translateY(-10px);}}
-.landing-btns{position:absolute;bottom:28px;display:flex;gap:16px;z-index:20;flex-wrap:wrap;justify-content:center;width:100%;padding:0 20px;}
+/* =====================================================
+   NOTIFICATION BANNER (fake app notifs, top overlay)
+===================================================== */
+.notif-wrap{position:absolute;top:-90px;left:10px;right:10px;z-index:200;transition:top 0.45s cubic-bezier(0.34,1.5,0.64,1);}
+.notif-wrap.show{top:54px;}
+.notif{
+  background:rgba(14,14,30,0.97);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;padding:10px 14px;
+  display:flex;align-items:center;gap:10px;
+  backdrop-filter:blur(30px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+}
+.notif-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;font-style:normal;}
+.notif-body{flex:1;min-width:0;}
+.notif-app{font-family:var(--f-mono);font-size:8px;color:rgba(255,255,255,0.45);letter-spacing:1.5px;text-transform:uppercase;}
+.notif-txt{font-size:12px;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
+.notif-time{font-family:var(--f-mono);font-size:8px;color:rgba(255,255,255,0.3);flex-shrink:0;}
+.notif-x{width:22px;height:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,0.3);font-size:11px;border-radius:50%;transition:background 0.2s;}
+.notif-x:hover{background:rgba(255,255,255,0.08);}
 
-/* ─── FORM BOX ─── */
-.fbx{width:min(510px,94vw);border:2px solid var(--accent);padding:clamp(22px,5vw,40px) clamp(18px,5vw,40px);background:rgba(0,0,0,.9);box-shadow:0 0 50px rgba(0,200,255,.06),inset 0 0 30px rgba(0,200,255,.02);position:relative;max-height:100%;overflow-y:auto;transition:border-color .6s;}
-.fbx::before{content:'';position:absolute;top:-2px;left:14px;width:60px;height:3px;background:var(--accent);}
-.fbx::after{content:'';position:absolute;bottom:-2px;right:14px;width:60px;height:3px;background:var(--accent);}
-.corner{position:absolute;width:16px;height:16px;}
-.ctlx{top:-2px;left:-2px;border-top:3px solid var(--accent);border-left:3px solid var(--accent);}
-.ctrx{top:-2px;right:-2px;border-top:3px solid var(--accent);border-right:3px solid var(--accent);}
-.cblx{bottom:-2px;left:-2px;border-bottom:3px solid var(--accent);border-left:3px solid var(--accent);}
-.cbrx{bottom:-2px;right:-2px;border-bottom:3px solid var(--accent);border-right:3px solid var(--accent);}
+/* =====================================================
+   SCREENS — absolute overlay below status bar
+===================================================== */
+.screen{
+  position:absolute;top:46px;left:0;right:0;bottom:0;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.5s ease, transform 0.5s ease;
+  transform:translateY(12px);
+  display:flex;flex-direction:column;
+}
+.screen.active{opacity:1;pointer-events:all;transform:translateY(0);}
 
-.step-lbl{font-family:'Orbitron',sans-serif;font-size:clamp(.58rem,1.5vw,.65rem);letter-spacing:5px;color:var(--accent);opacity:.9;margin-bottom:8px;}
-.form-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.25rem,4vw,1.65rem);font-weight:900;letter-spacing:2px;color:#fff;text-shadow:0 0 20px rgba(255,255,255,.15);margin-bottom:8px;line-height:1.2;}
-.form-sub{font-size:clamp(.78rem,2vw,.88rem);color:rgba(255,255,255,.42);margin-bottom:26px;letter-spacing:.5px;font-family:'Rajdhani',sans-serif;line-height:1.6;}
-.igrp{margin-bottom:20px;}
-.ilbl{display:block;font-size:clamp(.58rem,1.5vw,.62rem);letter-spacing:4px;color:rgba(255,255,255,.45);margin-bottom:8px;font-family:'Orbitron',sans-serif;}
-.tinput,select.tinput{width:100%;background:rgba(255,255,255,.025);border:1px solid rgba(0,200,255,.35);color:#fff;padding:14px 16px;font-family:'Space Mono',monospace;font-size:1rem;letter-spacing:1.5px;outline:none;transition:.2s;-webkit-appearance:none;appearance:none;}
-.tinput:focus,select.tinput:focus{border-color:var(--accent);box-shadow:0 0 18px rgba(0,200,255,.18);background:rgba(0,200,255,.03);}
-.tinput::placeholder{color:rgba(255,255,255,.2);font-size:.85rem;}
-select.tinput option{background:#000;color:#fff;}
+/* =====================================================
+   SCREEN: BOOT
+===================================================== */
+#s-boot{background:rgba(4,4,16,0.7);}
+.boot-top{padding:20px 20px 12px;border-bottom:1px solid var(--border);}
+.boot-logo{font-family:var(--f-display);font-size:18px;font-weight:900;letter-spacing:4px;color:#fff;text-align:center;text-shadow:0 0 20px rgba(255,255,255,0.15);}
+.boot-logo em{color:var(--user-clr);font-style:normal;}
+.boot-tag{font-family:var(--f-mono);font-size:9px;color:var(--grey2);text-align:center;margin-top:4px;letter-spacing:2px;}
+.boot-prog{height:2px;background:rgba(255,255,255,0.06);margin-top:14px;overflow:hidden;}
+.boot-prog-fill{height:100%;background:linear-gradient(90deg,var(--user-clr),var(--clr-g));transition:width 0.7s ease;width:0%;}
+.boot-steps{flex:1;overflow-y:auto;padding:10px 16px;display:flex;flex-direction:column;gap:7px;}
+.boot-steps::-webkit-scrollbar{width:2px;}
+.boot-steps::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);}
+.bs{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:11px;border:1px solid transparent;background:rgba(255,255,255,0.015);transition:all 0.4s ease;}
+.bs.pend{opacity:0.28;}
+.bs.act{border-color:rgba(0,162,255,0.3);background:rgba(0,162,255,0.05);animation:bspulse 2s infinite;}
+.bs.done{border-color:rgba(0,230,118,0.2);background:rgba(0,230,118,0.03);}
+@keyframes bspulse{0%,100%{box-shadow:none;}50%{box-shadow:0 0 0 3px rgba(0,162,255,0.08);}}
+.bs-ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:rgba(255,255,255,0.04);border:1px solid var(--border);}
+.bs.act .bs-ic{background:rgba(0,162,255,0.1);border-color:rgba(0,162,255,0.3);}
+.bs.done .bs-ic{background:rgba(0,230,118,0.1);border-color:rgba(0,230,118,0.3);}
+.bs-info{flex:1;}
+.bs-lbl{font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,0.5);}
+.bs.act .bs-lbl{color:var(--clr-b);}
+.bs.done .bs-lbl{color:var(--clr-g);}
+.bs-sub{font-family:var(--f-mono);font-size:9px;color:rgba(255,255,255,0.22);margin-top:2px;}
+.bs.act .bs-sub{color:rgba(0,162,255,0.55);}
+.bs-st{width:18px;text-align:center;flex-shrink:0;}
+.chk{color:var(--clr-g);font-size:13px;animation:chkpop 0.3s ease;}
+@keyframes chkpop{from{transform:scale(0) rotate(-20deg);}to{transform:scale(1) rotate(0);}}
+.spin{width:14px;height:14px;border:2px solid rgba(0,162,255,0.15);border-top-color:var(--clr-b);border-radius:50%;animation:sp 0.7s linear infinite;display:inline-block;}
+@keyframes sp{to{transform:rotate(360deg);}}
+.boot-foot{padding:12px 16px 16px;border-top:1px solid var(--border);flex-shrink:0;}
+.boot-btn{width:100%;padding:13px;background:var(--user-clr);color:#000;font-family:var(--f-display);font-size:12px;font-weight:700;letter-spacing:2px;border:none;border-radius:11px;cursor:pointer;transition:all 0.3s;box-shadow:0 0 20px rgba(0,162,255,0.25);}
+.boot-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 30px rgba(0,162,255,0.4);}
+.boot-btn:disabled{opacity:0.3;pointer-events:none;}
 
-/* OTP */
-.otp-row{display:flex;gap:10px;justify-content:center;margin:18px 0;}
-.otp-box{width:clamp(44px,13vw,56px);height:clamp(54px,16vw,66px);background:rgba(255,255,255,.02);border:2px solid rgba(0,200,255,.28);color:#fff;text-align:center;font-family:'Space Mono',monospace;font-size:clamp(1.2rem,4vw,1.5rem);font-weight:700;outline:none;transition:.2s;}
-.otp-box:focus{border-color:var(--accent);box-shadow:0 0 18px rgba(0,200,255,.3);background:rgba(0,200,255,.04);}
+/* PIN OVERLAY */
+.pin-ov{position:absolute;inset:0;background:rgba(4,4,16,0.97);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;backdrop-filter:blur(20px);}
+.pin-ov.show{display:flex;}
+.pin-title{font-family:var(--f-display);font-size:13px;letter-spacing:3px;color:#fff;text-align:center;}
+.pin-sub{font-family:var(--f-mono);font-size:9px;color:var(--grey);letter-spacing:2px;}
+.pin-dots{display:flex;gap:14px;}
+.pd{width:15px;height:15px;border-radius:50%;border:2px solid rgba(0,162,255,0.3);transition:all 0.2s;}
+.pd.on{background:var(--clr-b);border-color:var(--clr-b);box-shadow:0 0 10px var(--clr-b);}
+.pin-kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:200px;}
+.pk{padding:13px;background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:11px;cursor:pointer;font-family:var(--f-display);font-size:17px;font-weight:600;color:#fff;text-align:center;transition:all 0.15s;backdrop-filter:blur(10px);}
+.pk:active{background:rgba(0,162,255,0.12);border-color:var(--clr-b);transform:scale(0.93);}
 
-/* BUTTONS */
-.btn-main{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border:2px solid var(--accent);background:rgba(0,200,255,.06);color:var(--accent);font-family:'Orbitron',sans-serif;font-size:clamp(.72rem,2vw,.82rem);font-weight:700;letter-spacing:3px;cursor:pointer;transition:.2s;text-shadow:0 0 8px var(--accent);box-shadow:0 0 14px rgba(0,200,255,.12);text-decoration:none;text-align:center;min-height:52px;}
-.btn-main:hover{background:var(--accent);color:#000;box-shadow:0 0 30px var(--accent);text-shadow:none;}
-.btn-full{width:100%;margin-top:10px;}
-.btn-vip{border-color:var(--y);color:var(--y);background:rgba(255,230,0,.05);text-shadow:0 0 8px var(--y);box-shadow:0 0 14px rgba(255,230,0,.1);}
-.btn-vip:hover{background:var(--y);color:#000;box-shadow:0 0 30px var(--y);}
-.btn-green{border-color:var(--g);color:var(--g);background:rgba(57,255,20,.05);text-shadow:0 0 8px var(--g);}
-.btn-green:hover{background:var(--g);color:#000;}
-.btn-blue{border-color:var(--b);color:var(--b);background:rgba(0,200,255,.06);text-shadow:0 0 8px var(--b);}
-.btn-blue:hover{background:var(--b);color:#000;}
+/* =====================================================
+   SCREEN: IDENTITY
+===================================================== */
+#s-id{background:rgba(4,4,16,0.7);padding:20px 18px;gap:16px;justify-content:center;}
+.id-logo{font-family:var(--f-display);font-size:20px;font-weight:900;letter-spacing:3px;text-align:center;color:#fff;}
+.id-logo em{color:var(--user-clr);font-style:normal;}
+.id-sub{font-family:var(--f-mono);font-size:9px;color:var(--grey);text-align:center;letter-spacing:2px;}
+.id-card{background:var(--panel-bg);border:1px solid var(--border);border-radius:16px;padding:16px;backdrop-filter:blur(20px);}
+.id-lbl{font-family:var(--f-mono);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-bottom:12px;text-transform:uppercase;}
+/* 10-color grid */
+.clr-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.clr-pick{width:100%;aspect-ratio:1;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all 0.3s;position:relative;box-shadow:0 2px 8px rgba(0,0,0,0.4);}
+.clr-pick:hover{transform:scale(1.15);}
+.clr-pick.sel{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,0.2),0 0 20px currentColor;}
+.clr-pick.sel::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700;}
+/* White pick needs dark check */
+.clr-pick[data-id="w"].sel::after{color:#000;}
+.id-name-in{
+  width:100%;background:rgba(0,0,0,0.5);
+  border:1px solid rgba(255,255,255,0.1);color:#fff;
+  padding:12px 14px;border-radius:10px;
+  font-family:var(--f-mono);font-size:14px;letter-spacing:2px;text-transform:uppercase;
+  outline:none;transition:border 0.3s;
+  caret-color:var(--user-clr);
+}
+.id-name-in::placeholder{color:rgba(255,255,255,0.18);}
+.id-name-in:focus{border-color:var(--user-clr);box-shadow:0 0 10px rgba(0,162,255,0.1);}
+.id-btn{
+  width:100%;padding:14px;background:var(--user-clr);color:#000;
+  font-family:var(--f-display);font-size:12px;font-weight:700;letter-spacing:2px;
+  border:none;border-radius:12px;cursor:pointer;transition:all 0.3s;
+  box-shadow:0 0 20px rgba(0,162,255,0.2);
+}
+.id-btn:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(0,162,255,0.4);}
 
-.msgbox{padding:11px 16px;font-size:clamp(.65rem,2vw,.72rem);letter-spacing:1.5px;margin-top:12px;display:none;font-family:'Orbitron',sans-serif;line-height:1.5;}
-.msgbox.err{border:1px solid var(--o);color:var(--o);background:rgba(255,98,0,.05);}
-.msgbox.suc{border:1px solid var(--g);color:var(--g);background:rgba(57,255,20,.05);}
-.msgbox.info{border:1px solid var(--b);color:var(--b);background:rgba(0,200,255,.05);}
-.msgbox.show{display:block;}
+/* =====================================================
+   SCREEN: COMMAND CENTER
+===================================================== */
+#s-main{background:transparent;}
 
-.pdots{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
-.pdot{width:9px;height:4px;background:rgba(255,255,255,.15);transition:.3s;}
-.pdot.done{background:var(--accent);box-shadow:0 0 5px var(--accent);}
-.pdot.now{width:22px;background:#fff;}
+/* CMD HEADER */
+.cmd-hdr{
+  flex-shrink:0;height:42px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;
+  background:rgba(0,0,0,0.3);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);
+}
+.cmd-user{display:flex;align-items:center;gap:7px;}
+.cmd-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;transition:box-shadow 0.3s;}
+.cmd-name{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:1px;transition:all 0.4s;white-space:nowrap;overflow:hidden;}
+.cmd-name.gone{max-width:0;opacity:0;margin:0;padding:0;}
+.anon-label{font-family:var(--f-mono);font-size:9px;color:var(--grey);padding:2px 7px;background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;display:none;align-items:center;gap:4px;}
+.anon-label.show{display:flex;}
+.cmd-right{display:flex;align-items:center;gap:8px;}
+/* Anon toggle */
+.tog-wrap{display:flex;align-items:center;gap:5px;cursor:pointer;}
+.tog-lbl{font-family:var(--f-mono);font-size:8px;color:var(--grey);letter-spacing:1px;}
+.tog{width:30px;height:16px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:8px;position:relative;transition:all 0.3s;}
+.tog::after{content:'';position:absolute;width:11px;height:11px;background:var(--grey);border-radius:50%;top:1.5px;left:1.5px;transition:all 0.3s;}
+.tog.on{background:rgba(110,110,130,0.25);border-color:var(--grey2);}
+.tog.on::after{left:15px;background:#fff;}
 
-.dim{color:rgba(255,255,255,.35);font-size:clamp(.68rem,2vw,.75rem);letter-spacing:.5px;font-family:'Rajdhani',sans-serif;}
+/* BOT STATUS BAR */
+.bot-bar{
+  flex-shrink:0;height:32px;
+  display:flex;align-items:center;gap:6px;
+  padding:0 12px;overflow-x:auto;
+  background:rgba(0,0,0,0.2);
+  border-bottom:1px solid var(--border);
+}
+.bot-bar::-webkit-scrollbar{display:none;}
+.btag{display:flex;align-items:center;gap:4px;padding:2px 7px;border-radius:20px;font-family:var(--f-mono);font-size:8px;letter-spacing:0.8px;border:1px solid;flex-shrink:0;cursor:default;transition:transform 0.2s;}
+.btag:hover{transform:scale(1.05);}
+.bdot{width:5px;height:5px;border-radius:50%;animation:bdp 2.5s ease-in-out infinite;}
+@keyframes bdp{0%,100%{opacity:0.4;}50%{opacity:1;}}
 
-/* ─── PATH CHOICE ─── */
-.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:min(580px,93vw);margin-top:18px;}
-@media(max-width:420px){.path-grid{grid-template-columns:1fr;}}
-.path-card{border:2px solid;padding:28px 18px;text-align:center;cursor:pointer;transition:.2s;background:rgba(0,0,0,.88);position:relative;overflow:hidden;}
-.path-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;animation:pcScan 2.5s linear infinite;}
-@keyframes pcScan{to{left:100%;}}
-.path-card:hover{transform:translateY(-4px);}
-.path-card.fp{border-color:var(--g);}
-.path-card.fp::before{background:var(--g);}
-.path-card.vp{border-color:var(--y);}
-.path-card.vp::before{background:var(--y);}
-.path-icon{font-size:2.5rem;margin-bottom:12px;display:block;}
-.path-name{font-family:'Orbitron',sans-serif;font-size:clamp(.8rem,2.5vw,.95rem);font-weight:700;letter-spacing:4px;margin-bottom:10px;}
-.fp .path-name{color:var(--g);text-shadow:0 0 14px var(--g);}
-.vp .path-name{color:var(--y);text-shadow:0 0 14px var(--y);}
-.path-desc{font-size:clamp(.65rem,2vw,.72rem);color:rgba(255,255,255,.4);line-height:1.6;font-family:'Rajdhani',sans-serif;}
-.path-badge{display:inline-block;margin-top:12px;padding:4px 12px;font-family:'Orbitron',sans-serif;font-size:clamp(.5rem,1.5vw,.58rem);letter-spacing:3px;border:1px solid;}
-.fp .path-badge{color:var(--g);border-color:var(--g);}
-.vp .path-badge{color:var(--y);border-color:var(--y);}
+/* CHAT */
+.chat{flex:1;overflow-y:auto;padding:12px 12px;display:flex;flex-direction:column;gap:5px;}
+.chat::-webkit-scrollbar{width:2px;}
+.chat::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.07);border-radius:1px;}
 
-/* ─── FREE NODE ─── */
-#screen-free-node{background:#000;flex-direction:column;overflow-y:auto;justify-content:flex-start;}
-.node-header{flex-shrink:0;padding:18px 20px 14px;border-bottom:1px solid rgba(0,200,255,.18);background:rgba(0,0,0,.95);width:100%;position:sticky;top:0;z-index:10;}
-.node-status-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
-.node-pulse{width:10px;height:10px;background:var(--g);box-shadow:0 0 12px var(--g),0 0 24px var(--g);animation:npulse 1.5s ease-in-out infinite;flex-shrink:0;}
-@keyframes npulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-.node-title{font-family:'Orbitron',sans-serif;font-size:clamp(.72rem,2vw,.88rem);font-weight:700;letter-spacing:4px;color:var(--g);text-shadow:0 0 12px var(--g);}
-.node-big-count{display:flex;align-items:baseline;gap:8px;margin:6px 0 4px;}
-.node-num{font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(2rem,7vw,2.8rem);color:var(--g);text-shadow:0 0 20px var(--g);}
-.node-num-lbl{font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:4px;color:rgba(0,200,255,.7);}
-.node-city-lbl{font-family:'Orbitron',sans-serif;font-size:clamp(.58rem,1.5vw,.65rem);letter-spacing:5px;color:rgba(255,255,255,.4);margin-top:2px;}
-.signal-row{display:flex;align-items:flex-end;gap:4px;margin-top:6px;}
-.sb2{width:5px;background:var(--g);animation:sig2 2s ease-in-out infinite;}
-.sb2:nth-child(1){height:7px;animation-delay:.0s;}
-.sb2:nth-child(2){height:11px;animation-delay:.1s;}
-.sb2:nth-child(3){height:15px;animation-delay:.2s;}
-.sb2:nth-child(4){height:19px;animation-delay:.3s;}
-.sb2:nth-child(5){height:23px;animation-delay:.4s;}
-@keyframes sig2{0%,100%{opacity:.3;}50%{opacity:1;}}
-.sig-lbl{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:3px;color:var(--g);margin-left:6px;align-self:center;}
+/* MESSAGE BUBBLES */
+.msg{max-width:84%;display:flex;flex-direction:column;gap:3px;animation:msgin 0.3s ease;}
+@keyframes msgin{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.msg.u{align-self:flex-end;}
+.msg.b{align-self:flex-start;}
+.msg-hdr{display:flex;align-items:center;gap:5px;padding:0 3px;}
+.msg.u .msg-hdr{justify-content:flex-end;}
+.m-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.m-name{font-family:var(--f-mono);font-size:9px;font-weight:600;letter-spacing:1px;}
+.m-role{font-family:var(--f-mono);font-size:7px;color:rgba(255,255,255,0.2);}
+.m-time{font-family:var(--f-mono);font-size:7px;color:rgba(255,255,255,0.2);}
+.bubble{padding:9px 13px;border-radius:15px;font-size:12.5px;line-height:1.55;word-break:break-word;}
+/* USER bubbles — normal mode */
+.msg.u .bubble.mode-normal{border-radius:15px 15px 3px 15px;}
+/* BOT bubbles — normal mode */
+.msg.b .bubble.mode-normal{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:15px 15px 15px 3px;
+  color:rgba(255,255,255,0.88);
+}
+/* IPNOTEC MODE bubbles — dark glass, text = profile color */
+.bubble.mode-ipm{
+  background:rgba(8,8,22,0.85);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:15px;
+}
+.msg.u .bubble.mode-ipm{border-radius:15px 15px 3px 15px;}
+.msg.b .bubble.mode-ipm{border-radius:15px 15px 15px 3px;}
 
-.node-grid-wrap{flex:1;padding:16px;width:100%;}
-.ng-lbl{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:5px;color:rgba(255,255,255,.3);margin-bottom:12px;}
-.node-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;}
-.node-card{border:1px solid rgba(255,255,255,.08);padding:14px 12px;background:rgba(255,255,255,.012);position:relative;overflow:hidden;cursor:pointer;transition:.2s;}
-.node-card:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.16);}
-.node-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.nc-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:.9rem;margin-bottom:8px;position:relative;flex-shrink:0;}
-.nc-avatar::after{content:'';position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;background:var(--g);border:1.5px solid #000;box-shadow:0 0 6px var(--g);}
-.nc-name{font-family:'Space Mono',monospace;font-size:clamp(.72rem,2vw,.8rem);font-weight:700;letter-spacing:1px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.nc-city{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:3px;color:rgba(255,255,255,.4);margin-bottom:8px;}
-.nc-id{font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.22);letter-spacing:1px;margin-bottom:10px;filter:blur(2px);user-select:none;}
-.nc-btns{display:flex;gap:6px;}
-.nc-btn{flex:1;padding:7px 4px;border:1px solid;font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:1px;cursor:pointer;background:transparent;transition:.2s;text-align:center;}
-.nc-ping{border-color:rgba(0,200,255,.4);color:var(--b);}
-.nc-ping:hover,.nc-ping.pinged{background:rgba(0,200,255,.15);}
-.nc-connect{border-color:rgba(255,230,0,.4);color:var(--y);}
-.nc-connect:hover{background:rgba(255,230,0,.08);}
+/* THINKING dots */
+.thinking{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:15px 15px 15px 3px;padding:10px 14px;display:flex;gap:5px;align-items:center;}
+.td{width:5px;height:5px;border-radius:50%;animation:tdot 0.9s ease-in-out infinite;}
+.td:nth-child(2){animation-delay:0.15s;}
+.td:nth-child(3){animation-delay:0.3s;}
+@keyframes tdot{0%,100%{transform:translateY(0);opacity:0.35;}50%{transform:translateY(-4px);opacity:1;}}
 
-.node-cta{margin:0 16px 20px;padding:18px;border:1px solid rgba(255,230,0,.22);background:rgba(255,230,0,.025);text-align:center;}
-.node-cta-title{font-family:'Orbitron',sans-serif;font-size:clamp(.62rem,1.8vw,.72rem);letter-spacing:4px;color:var(--y);text-shadow:0 0 12px var(--y);margin-bottom:8px;}
-.node-cta-desc{font-size:clamp(.7rem,2vw,.78rem);color:rgba(255,255,255,.38);line-height:1.6;font-family:'Rajdhani',sans-serif;margin-bottom:14px;}
+.sys-msg{text-align:center;font-family:var(--f-mono);font-size:8px;color:rgba(255,255,255,0.18);padding:3px 0;letter-spacing:1.5px;}
 
-/* NODE MODAL */
-.node-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px;}
-.node-modal.show{display:flex;}
-.nm-box{width:100%;max-width:380px;border:2px solid var(--b);padding:28px 24px;background:rgba(0,0,0,.97);position:relative;}
-.nm-box::before{content:'';position:absolute;top:-2px;left:14px;width:50px;height:3px;background:var(--b);}
-.nm-status{padding:11px;font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:1.5px;margin:12px 0;border:1px solid;display:none;}
+/* =====================================================
+   MSG INPUT ROW — native textarea
+===================================================== */
+.msg-row{
+  flex-shrink:0;
+  display:flex;align-items:flex-end;gap:8px;
+  padding:8px 12px 12px;
+  background:rgba(0,0,0,0.25);
+  border-top:1px solid var(--border);
+}
+.msg-input{
+  flex:1;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  padding:10px 14px;
+  font-family:var(--f-body);font-size:14px;
+  color:#fff;outline:none;resize:none;
+  max-height:90px;line-height:1.5;
+  transition:border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.msg-input::placeholder{color:rgba(255,255,255,0.25);}
+.msg-input:focus{border-color:var(--user-clr);box-shadow:0 0 0 3px rgba(0,162,255,0.12);}
+.send-btn{
+  width:42px;height:42px;border-radius:12px;border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:all 0.2s;flex-shrink:0;
+  background:var(--user-clr);
+}
+.send-btn:active{transform:scale(0.9);}
 
-/* ─── PERSONA GRID ─── */
-.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
-.ptile{padding:16px 8px;border:2px solid;cursor:pointer;text-align:center;transition:.2s;position:relative;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.ptile:hover{transform:scale(1.04);}
-.ptile.sel{box-shadow:0 0 24px var(--tc);}
-.pltr{font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(1.5rem,5vw,2rem);display:block;margin-bottom:4px;}
-.pname{font-size:clamp(.46rem,1.4vw,.54rem);letter-spacing:2px;font-family:'Orbitron',sans-serif;opacity:.85;}
+/* =====================================================
+   CONTROL ROW
+===================================================== */
+.ctrl-row{
+  flex-shrink:0;height:40px;
+  display:flex;align-items:center;gap:5px;
+  padding:0 10px;
+  background:rgba(0,0,0,0.3);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.cr-btn{
+  flex:1;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-mono);font-size:8px;letter-spacing:0.8px;
+  border:1px solid var(--border2);border-radius:7px;cursor:pointer;
+  background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.6);
+  transition:all 0.2s;white-space:nowrap;gap:4px;
+  backdrop-filter:blur(10px);
+}
+.cr-btn:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.cr-btn:active{transform:scale(0.95);}
+.cr-btn.ipm-on{background:rgba(0,162,255,0.12);border-color:rgba(0,162,255,0.4);color:var(--clr-b);}
+.cr-btn.anon-on{background:rgba(110,110,130,0.15);border-color:var(--grey2);color:#fff;}
+.cr-btn.exit-pingg{background:rgba(255,23,68,0.08);border-color:rgba(255,23,68,0.3);color:var(--clr-r);flex:1.5;}
+.cr-btn.exit-pingg:hover{background:rgba(255,23,68,0.18);}
 
-/* ─── JOURNEY ─── */
-#screen-journey{background:#000;position:relative;}
-.jw{position:relative;z-index:10;text-align:center;width:100%;padding:20px;}
-.jlbl{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:8px;color:rgba(255,255,255,.3);margin-bottom:16px;}
-.jname{font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(3rem,10vw,5rem);color:var(--accent);text-shadow:0 0 40px var(--accent);margin-bottom:8px;animation:jNamePulse 1.8s ease-in-out infinite;}
-@keyframes jNamePulse{0%,100%{text-shadow:0 0 30px var(--accent),0 0 60px var(--accent);}50%{text-shadow:0 0 70px var(--accent),0 0 140px var(--accent);}}
-.jcity{font-family:'Orbitron',sans-serif;font-size:clamp(.85rem,2.5vw,1.2rem);letter-spacing:5px;color:var(--y);text-shadow:0 0 18px var(--y);margin-bottom:22px;}
-.pcard{display:inline-flex;gap:24px;flex-wrap:wrap;justify-content:center;border:1px solid rgba(255,255,255,.08);padding:14px 24px;margin-bottom:22px;background:rgba(0,0,0,.6);}
-.pci{text-align:center;}
-.pck{font-size:.48rem;letter-spacing:4px;color:rgba(255,255,255,.35);font-family:'Orbitron',sans-serif;display:block;margin-bottom:3px;}
-.pcv{font-size:.82rem;font-weight:700;letter-spacing:2px;}
-.jpbar{width:min(380px,80vw);height:5px;background:rgba(255,255,255,.08);margin:0 auto 14px;}
-.jpfill{height:100%;background:var(--accent);box-shadow:0 0 10px var(--accent);width:0%;transition:width .08s linear;}
-.jstatus{font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:3px;color:rgba(255,255,255,.38);}
-.dstream{position:absolute;font-family:'Space Mono',monospace;font-size:.52rem;white-space:nowrap;animation:dfall 5s linear infinite;pointer-events:none;}
-@keyframes dfall{0%{transform:translateY(-20%);opacity:0;}10%{opacity:1;}90%{opacity:.8;}100%{transform:translateY(110vh);opacity:0;}}
-
-/* ─── TICKET SCREEN ─── */
-#screen-ticket{background:#000;}
-.tkt-panel{width:min(520px,94vw);border:2px solid var(--y);padding:24px;background:rgba(255,230,0,.025);position:relative;text-align:center;margin-bottom:20px;}
-.tkt-panel::before{content:'';position:absolute;top:-2px;left:14px;width:50px;height:3px;background:var(--y);}
-.tkt-panel::after{content:'';position:absolute;bottom:-2px;right:14px;width:50px;height:3px;background:var(--y);}
-.tkt-lbl{font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:7px;color:rgba(255,230,0,.6);margin-bottom:12px;}
-.tkt-number{font-family:'Space Mono',monospace;font-size:clamp(.82rem,2.5vw,1.05rem);font-weight:700;color:var(--y);text-shadow:0 0 20px var(--y);letter-spacing:2px;margin-bottom:14px;word-break:break-all;}
-.tkt-math{font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.28);letter-spacing:1px;line-height:1.9;margin-top:10px;}
-.tkt-math span{color:rgba(255,230,0,.7);}
-.fname-box{width:min(520px,94vw);}
-.avail-status{padding:12px 16px;font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:1.5px;margin:10px 0;display:none;line-height:1.5;}
-.avail-status.checking{border:1px solid rgba(0,200,255,.4);color:var(--b);background:rgba(0,200,255,.04);display:block;}
-.avail-status.available{border:1px solid var(--g);color:var(--g);background:rgba(57,255,20,.04);display:block;}
-.avail-status.taken{border:1px solid var(--o);color:var(--o);background:rgba(255,98,0,.04);display:block;}
-.locked-name{padding:14px 18px;border:1px solid var(--g);color:var(--g);background:rgba(57,255,20,.04);font-family:'Space Mono',monospace;font-size:clamp(.9rem,2.5vw,1rem);letter-spacing:3px;text-align:center;margin-bottom:14px;display:none;}
-
-/* ─── PAYMENT ─── */
-.pay-amount{font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(2.5rem,10vw,3.5rem);color:var(--y);text-shadow:0 0 30px var(--y),0 0 60px var(--y);letter-spacing:4px;margin-bottom:8px;}
-.pay-label{font-family:'Orbitron',sans-serif;font-size:clamp(.72rem,2vw,.85rem);letter-spacing:6px;color:rgba(255,255,255,.5);margin-bottom:22px;}
-.pay-btn{padding:18px;background:var(--y);color:#000;border:none;font-family:'Orbitron',sans-serif;font-weight:900;font-size:clamp(.85rem,3vw,1rem);letter-spacing:4px;cursor:pointer;box-shadow:0 0 30px rgba(255,230,0,.4);transition:.2s;animation:payPulse 2s ease-in-out infinite;width:100%;min-height:58px;}
-@keyframes payPulse{0%,100%{box-shadow:0 0 20px rgba(255,230,0,.35);}50%{box-shadow:0 0 60px rgba(255,230,0,.75),0 0 120px rgba(255,230,0,.25);}}
-.pay-btn:hover{transform:scale(1.02);}
-.order-box{border:1px solid rgba(255,255,255,.09);padding:18px;margin:18px 0;text-align:left;background:rgba(255,255,255,.012);}
-.order-row{display:flex;justify-content:space-between;font-size:clamp(.68rem,2vw,.76rem);margin-bottom:10px;font-family:'Space Mono',monospace;}
-.order-row span:first-child{color:rgba(255,255,255,.5);}
-
-/* ─── REVEAL ─── */
-.reveal-wrap{width:min(580px,92vw);padding:10px 10px 30px;margin:0 auto;}
-.rev-ticket{font-family:'Space Mono',monospace;font-size:clamp(.65rem,2vw,.82rem);letter-spacing:2px;color:var(--y);border:1px solid rgba(255,230,0,.4);padding:12px 18px;display:inline-block;margin-bottom:18px;word-break:break-all;max-width:100%;text-align:center;}
-.rev-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,5.5vw,2.3rem);font-weight:900;letter-spacing:3px;margin-bottom:12px;line-height:1.2;}
-.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0;}
-@media(max-width:420px){.rev-grid{grid-template-columns:1fr;}}
-.rev-item{border:1px solid rgba(255,255,255,.09);padding:18px;background:rgba(255,255,255,.015);}
-.rev-icon{font-size:1.2rem;margin-bottom:8px;display:block;}
-.rev-ititle{font-family:'Orbitron',sans-serif;font-size:clamp(.54rem,1.5vw,.62rem);letter-spacing:3px;margin-bottom:6px;}
-.rev-idesc{font-size:clamp(.65rem,2vw,.72rem);color:rgba(255,255,255,.42);line-height:1.7;font-family:'Rajdhani',sans-serif;}
-.pingg-launch{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;background:rgba(0,200,255,.08);border:2px solid var(--b);font-family:'Orbitron',sans-serif;font-size:clamp(.8rem,2.5vw,.95rem);font-weight:700;letter-spacing:3px;color:var(--b);text-shadow:0 0 12px var(--b);text-decoration:none;text-align:center;transition:.2s;cursor:pointer;margin:16px 0;animation:pinggPulse 2s ease-in-out infinite;width:100%;}
-@keyframes pinggPulse{0%,100%{box-shadow:0 0 15px rgba(0,200,255,.2);}50%{box-shadow:0 0 40px rgba(0,200,255,.5);}}
-.pingg-launch:hover{background:var(--b);color:#000;text-shadow:none;}
-
-/* ─── FINAL ─── */
-.final-see{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5.5vw,3rem);font-weight:900;letter-spacing:4px;animation:fglow 2.5s ease-in-out infinite;}
-.final-in{font-family:'Orbitron',sans-serif;font-size:clamp(2.2rem,6.5vw,3.8rem);font-weight:900;letter-spacing:4px;animation:fglow 2.5s ease-in-out infinite .2s;}
-.final-future{font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,8.5vw,5.5rem);font-weight:900;letter-spacing:4px;animation:fglow 2.5s ease-in-out infinite .4s;}
-@keyframes fglow{0%,100%{text-shadow:0 0 25px currentColor;}50%{text-shadow:0 0 70px currentColor,0 0 140px currentColor;}}
-
-::-webkit-scrollbar{width:3px;}
-::-webkit-scrollbar-track{background:#000;}
-::-webkit-scrollbar-thumb{background:var(--accent);}
+/* =====================================================
+/* =====================================================
+   SCREEN: EXIT
+===================================================== */
+#s-exit{align-items:center;justify-content:center;gap:18px;padding:30px 20px;background:rgba(4,4,16,0.8);}
+.exit-logo{font-family:var(--f-display);font-size:16px;font-weight:900;letter-spacing:3px;color:#fff;text-align:center;}
+.exit-status{font-family:var(--f-mono);font-size:10px;letter-spacing:2px;text-align:center;}
+.exit-steps{width:100%;display:flex;flex-direction:column;gap:4px;}
+.esr{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:8px;font-family:var(--f-mono);font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1px;transition:all 0.4s;}
+.esr.done{color:var(--clr-g);}
+.esr-ic{width:16px;text-align:center;flex-shrink:0;}
+.exit-sum{background:var(--panel-bg);border:1px solid var(--border);border-radius:14px;padding:14px 16px;width:100%;display:none;}
+.exit-sum.show{display:block;}
+.esr2{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-family:var(--f-mono);font-size:9px;}
+.esr2:last-child{border:none;}
+.esl{color:rgba(255,255,255,0.35);}
+.esv{color:#fff;}
+.restart-btn{width:100%;padding:13px;background:rgba(0,162,255,0.1);border:1px solid rgba(0,162,255,0.35);color:var(--clr-b);font-family:var(--f-display);font-size:11px;font-weight:700;letter-spacing:2px;border-radius:11px;cursor:pointer;transition:all 0.3s;display:none;}
+.restart-btn:hover{background:rgba(0,162,255,0.2);}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="hdr" id="hdr">STEP INTO THE FUTURE -></div>
-
-<div id="cw">
-
-<!-- ═══════════════ LANDING ═══════════════ -->
-<div class="screen active" id="screen-landing">
-  <div class="wmap"></div>
-  <div id="map-nodes"></div>
-  <div id="word-layer"></div>
-  <div class="big-i" id="main-i">I</div>
-  <div class="landing-btns">
-    <button class="btn-main btn-green" onclick="startFlow('free')">FREE IPNOTEC INTERNET</button>
-    <button class="btn-main btn-vip" onclick="startFlow('vip')">◆ IPNOTEC VIP</button>
-  </div>
+<div class="orbs">
+  <div class="orb"></div><div class="orb"></div>
+  <div class="orb"></div><div class="orb"></div>
 </div>
 
-<!-- ═══════════════ PHONE ═══════════════ -->
-<div class="screen" id="screen-phone">
-  <div class="fbx">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="pdots" id="ph-dots"></div>
-    <div class="step-lbl">STEP 01 · CONNECT</div>
-    <div class="form-title">ENTER PHONE<br>NUMBER</div>
-    <div class="form-sub">Include country code (e.g. 91XXXXXXXXXX for India). We'll send a 6-digit OTP.</div>
-    <div class="igrp">
-      <label class="ilbl">PHONE + COUNTRY CODE</label>
-      <input type="tel" class="tinput" id="phone-in" placeholder="91XXXXXXXXXX" maxlength="15" inputmode="numeric">
-    </div>
-    <div class="msgbox err" id="phone-err">INVALID — MINIMUM 10 DIGITS REQUIRED</div>
-    <button class="btn-main btn-full" id="send-otp-btn" onclick="sendOTP()">SEND OTP →</button>
-    <div class="dim" style="margin-top:14px;text-align:center">By continuing you agree to IPNOTEC Terms of Service</div>
-  </div>
-</div>
+<div class="device" id="device">
 
-<!-- ═══════════════ OTP ═══════════════ -->
-<div class="screen" id="screen-otp">
-  <div class="fbx">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="step-lbl">STEP 02 · AUTHENTICATE</div>
-    <div class="form-title">ENTER OTP</div>
-    <div class="form-sub" id="otp-sub">Code sent to your number</div>
-    <div class="otp-row">
-      <input class="otp-box" maxlength="1" id="o0" type="text" inputmode="numeric" autocomplete="off">
-      <input class="otp-box" maxlength="1" id="o1" type="text" inputmode="numeric" autocomplete="off">
-      <input class="otp-box" maxlength="1" id="o2" type="text" inputmode="numeric" autocomplete="off">
-      <input class="otp-box" maxlength="1" id="o3" type="text" inputmode="numeric" autocomplete="off">
-      <input class="otp-box" maxlength="1" id="o4" type="text" inputmode="numeric" autocomplete="off">
-      <input class="otp-box" maxlength="1" id="o5" type="text" inputmode="numeric" autocomplete="off">
-    </div>
-    <div class="msgbox err" id="otp-err">INCORRECT CODE — TRY AGAIN</div>
-    <div class="msgbox suc" id="otp-suc">✓ IDENTITY VERIFIED</div>
-    <button class="btn-main btn-full" onclick="verifyOTP()">VERIFY →</button>
-    <div class="dim" style="margin-top:12px;text-align:center;cursor:pointer" onclick="sendOTP()">↺ Resend OTP</div>
-  </div>
-</div>
+  <!-- EDGE INDICATOR -->
+  <div class="edge-ind" id="edgeInd"></div>
 
-<!-- ═══════════════ PATH CHOICE ═══════════════ -->
-<div class="screen" id="screen-path" style="flex-direction:column;padding:20px;text-align:center;">
-  <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:7px;color:rgba(255,255,255,.4);text-align:center;">IDENTITY VERIFIED · CHOOSE YOUR PATH</div>
-  <div class="form-title" style="font-family:'Orbitron',sans-serif;font-size:clamp(1.3rem,4vw,1.9rem);font-weight:900;letter-spacing:3px;text-align:center;margin:8px 0 6px;">WHICH FUTURE<br>CALLS TO YOU?</div>
-  <div class="dim" style="margin-bottom:8px;">Select your access level</div>
-  <div class="path-grid">
-    <div class="path-card fp" onclick="takePath('free')">
-      <span class="path-icon" style="color:var(--g)">◈</span>
-      <div class="path-name">FREE INTERNET</div>
-      <div class="path-desc">Connect to IPNOTEC's free internet. Join the live node. No commitment.</div>
-      <div class="path-badge">FREE · INSTANT</div>
-    </div>
-    <div class="path-card vp" onclick="takePath('vip')">
-      <span class="path-icon" style="color:var(--y)">◆</span>
-      <div class="path-name">IPNOTEC VIP</div>
-      <div class="path-desc">Create your future profile. Lock your identity. First to step into the future.</div>
-      <div class="path-badge">VIP · RS 1001</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ FREE NODE ═══════════════ -->
-<div class="screen" id="screen-free-node">
-  <div class="node-header">
-    <div class="node-status-row">
-      <div class="node-pulse"></div>
-      <div class="node-title">NODE ACTIVE</div>
-    </div>
-    <div class="node-big-count">
-      <span class="node-num" id="node-count-num">47</span>
-      <span class="node-num-lbl">CONNECTIONS</span>
-    </div>
-    <div class="node-city-lbl" id="node-user-city">▸ YOUR LOCATION NODE</div>
-    <div class="signal-row">
-      <div class="sb2"></div><div class="sb2"></div><div class="sb2"></div><div class="sb2"></div><div class="sb2"></div>
-      <span class="sig-lbl">SIGNAL STRONG</span>
-    </div>
-  </div>
-  <div class="node-grid-wrap">
-    <div class="ng-lbl">◈ NODES ON THIS HOTSPOT — TAP TO CONNECT</div>
-    <div class="node-grid" id="node-grid"></div>
-  </div>
-  <div class="node-cta">
-    <div class="node-cta-title">◆ GET YOUR IPNOTEC ID</div>
-    <div class="node-cta-desc">To connect with any node worldwide, you need your unique IPNOTEC ID. VIP members get a permanent global identity.</div>
-    <button class="btn-main btn-vip" style="width:100%;font-size:.78rem;" onclick="takePath('vip')">UPGRADE TO IPNOTEC VIP →</button>
-  </div>
-</div>
-
-<!-- NODE CONNECT MODAL -->
-<div class="node-modal" id="node-modal">
-  <div class="nm-box">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="step-lbl" style="text-align:center;letter-spacing:6px;color:var(--b);margin-bottom:10px;">◈ CONNECT REQUEST</div>
-    <div style="text-align:center;margin-bottom:16px;">
-      <div id="nm-avatar" style="width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:1.2rem;"></div>
-      <div class="form-title" style="font-size:1.1rem;margin-bottom:4px;" id="nm-name">—</div>
-      <div class="dim">IPNOTEC ID: <span id="nm-id" style="color:var(--b);filter:blur(1.5px)">IPN···0000</span></div>
-    </div>
-    <div class="igrp">
-      <label class="ilbl">ENTER THEIR IPNOTEC ID TO CONNECT</label>
-      <input type="text" class="tinput" id="nm-input" placeholder="IPN-XXXXXX" style="text-transform:uppercase;">
-    </div>
-    <div class="nm-status" id="nm-status"></div>
-    <div style="display:flex;gap:10px;margin-bottom:16px;">
-      <button class="btn-main btn-blue" style="flex:1;font-size:.72rem;padding:12px 8px;" onclick="attemptConnect()">CONNECT →</button>
-      <button class="btn-main" style="flex:.6;font-size:.72rem;padding:12px 8px;border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.4);background:transparent;text-shadow:none;" onclick="closeNodeModal()">CANCEL</button>
-    </div>
-    <div style="border:1px solid rgba(255,230,0,.2);padding:14px;background:rgba(255,230,0,.02);text-align:center;">
-      <div class="dim" style="color:rgba(255,230,0,.7);font-size:.65rem;margin-bottom:8px;">NO IPNOTEC ID? GET VIP</div>
-      <button class="btn-main btn-vip" style="font-size:.68rem;padding:10px;width:100%;" onclick="closeNodeModal();takePath('vip')">UPGRADE TO VIP →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ DOB ═══════════════ -->
-<div class="screen" id="screen-dob">
-  <div class="fbx">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="pdots" id="dob-dots"></div>
-    <div class="step-lbl">VIP PROFILE · 1 OF 3</div>
-    <div class="form-title">DATE OF BIRTH</div>
-    <div class="form-sub">Your birthdate anchors your place on the future timeline and is used to compute your unique IID.</div>
-    <div class="igrp">
-      <label class="ilbl">DATE OF BIRTH</label>
-      <input type="date" class="tinput" id="dob-in" style="color-scheme:dark;">
-    </div>
-    <div class="msgbox err" id="dob-err">PLEASE SELECT YOUR DATE OF BIRTH</div>
-    <button class="btn-main btn-full btn-vip" onclick="saveDOB()">CONTINUE →</button>
-  </div>
-</div>
-
-<!-- ═══════════════ PERSONA ═══════════════ -->
-<div class="screen" id="screen-persona">
-  <div class="fbx" style="width:min(560px,95vw);">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="pdots" id="per-dots"></div>
-    <div class="step-lbl">VIP PROFILE · 2 OF 3</div>
-    <div class="form-title">VIBGYOU PERSONA</div>
-    <div class="form-sub">The wavelength that defines your future identity</div>
-    <div class="persona-grid" id="pgrid"></div>
-    <div class="msgbox err" id="per-err">SELECT YOUR VIBGYOU PERSONA</div>
-    <button class="btn-main btn-full btn-vip" onclick="savePersona()">CONTINUE →</button>
-  </div>
-</div>
-
-<!-- ═══════════════ FUTURE CITY ═══════════════ -->
-<div class="screen" id="screen-city">
-  <div class="fbx">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="pdots" id="city-dots"></div>
-    <div class="step-lbl">VIP PROFILE · 3 OF 3</div>
-    <div class="form-title">YOUR FUTURE CITY</div>
-    <div class="form-sub">Where will you be on JAN 10 2027 at 10:01 HRS? Select your future aviation hub.</div>
-    <div class="igrp">
-      <label class="ilbl">FUTURE CITY</label>
-      <input type="text" class="tinput" id="city-in" list="iata-list" placeholder="Type city name..." autocomplete="off">
-      <datalist id="iata-list"></datalist>
-    </div>
-    <div class="msgbox err" id="city-err">SELECT A VALID FUTURE CITY FROM THE LIST</div>
-    <button class="btn-main btn-full btn-vip" onclick="saveCity()">GENERATE TIMELINE →</button>
-  </div>
-</div>
-
-<!-- ═══════════════ JOURNEY ═══════════════ -->
-<div class="screen" id="screen-journey">
-  <div class="wmap" id="j-wmap"></div>
-  <div id="j-streams"></div>
-  <div id="j-nodes"></div>
-  <div class="jw">
-    <div class="jlbl">COMPUTING YOUR FUTURE IDENTITY</div>
-    <div class="jname" id="j-persona-letter">—</div>
-    <div class="jcity" id="j-city">—</div>
-    <div class="pcard" id="j-pcard"></div>
-    <div class="jpbar"><div class="jpfill" id="j-pfill"></div></div>
-    <div class="jstatus" id="j-status">INITIALISING...</div>
-  </div>
-</div>
-
-<!-- ═══════════════ TICKET + NAME LOCK ═══════════════ -->
-<div class="screen scrollable" id="screen-ticket" style="align-items:center;">
-  <div style="width:min(520px,94vw);">
-    <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:7px;color:var(--y);text-align:center;margin-bottom:14px;">◆ YOUR FUTURE TICKET IS READY</div>
-    <div class="tkt-panel">
-      <div class="corner ctlx" style="border-top-color:var(--y);border-left-color:var(--y);"></div>
-      <div class="corner ctrx" style="border-top-color:var(--y);border-right-color:var(--y);"></div>
-      <div class="corner cblx" style="border-bottom-color:var(--y);border-left-color:var(--y);"></div>
-      <div class="corner cbrx" style="border-bottom-color:var(--y);border-right-color:var(--y);"></div>
-      <div class="tkt-lbl">FUTURE TICKET NUMBER</div>
-      <div class="tkt-number" id="tkt-display">—</div>
-      <div class="tkt-math" id="tkt-math">—</div>
-    </div>
-    <div class="fname-box">
-      <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:5px;color:rgba(255,255,255,.5);margin-bottom:12px;">LOCK YOUR FUTURE NAME</div>
-      <div class="form-sub" style="font-size:.82rem;color:rgba(255,255,255,.42);line-height:1.6;font-family:'Rajdhani',sans-serif;margin-bottom:16px;">
-        Your future name must be unique. Once locked, it's yours — forever. Combined with your city code it becomes your IPNOTEC identity.
+  <!-- NOTIFICATION BANNER -->
+  <div class="notif-wrap" id="notifWrap">
+    <div class="notif">
+      <div class="notif-icon" id="nIcon"></div>
+      <div class="notif-body">
+        <div class="notif-app" id="nApp"></div>
+        <div class="notif-txt" id="nTxt"></div>
       </div>
-      <div class="igrp">
-        <label class="ilbl">FUTURE NAME</label>
-        <input type="text" class="tinput" id="fname-in" placeholder="e.g. NOVA SEVEN" style="text-transform:uppercase;" oninput="triggerNameCheck()" autocomplete="off">
-      </div>
-      <div class="avail-status" id="avail-status">—</div>
-      <div class="locked-name" id="locked-name">—</div>
-      <div class="msgbox err" id="fname-err">ENTER AND LOCK YOUR FUTURE NAME FIRST</div>
-      <button class="btn-main btn-vip btn-full" id="btn-lock-name" onclick="lockName()" disabled style="opacity:.4;cursor:not-allowed;">CHECKING NAME...</button>
-      <div style="height:16px;"></div>
-      <button class="btn-main btn-full btn-vip" id="btn-proceed-pay" onclick="proceedToPayment()" style="display:none;">PROCEED TO PAYMENT →</button>
+      <div class="notif-time" id="nTime"></div>
+      <div class="notif-x" onclick="dismissNotif()">✕</div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════ PAYMENT ═══════════════ -->
-<div class="screen" id="screen-payment">
-  <div class="fbx" style="text-align:center;">
-    <div class="corner ctlx"></div><div class="corner ctrx"></div><div class="corner cblx"></div><div class="corner cbrx"></div>
-    <div class="step-lbl" style="text-align:center;">SECURE TRANSACTION · IPNOTEC VIP</div>
-    <div class="form-title" style="text-align:center;">TICKET TO<br>THE FUTURE</div>
-    <div class="dim" style="text-align:center;margin-bottom:18px;">One-time access. Lifetime priority. Be first.</div>
-    <div class="pay-amount">RS 1001</div>
-    <div class="pay-label">BUY TICKET TO THE FUTURE</div>
-    <div class="order-box">
-      <div class="step-lbl" style="margin-bottom:12px;">ORDER SUMMARY</div>
-      <div class="order-row"><span>IPNOTEC VIP Membership</span><span>RS 1001</span></div>
-      <div class="order-row"><span>Future Identity</span><span id="pay-fname-display" style="color:var(--y);">—</span></div>
-      <div class="order-row"><span>VIBGYOU Lock</span><span style="color:var(--g);">INCLUDED</span></div>
-      <div class="order-row"><span>Launch Priority</span><span style="color:var(--g);">INCLUDED</span></div>
-      <div class="order-row"><span>PINGG Access</span><span style="color:var(--b);">INCLUDED</span></div>
-      <div style="border-top:1px solid rgba(255,255,255,.08);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;font-weight:700;font-size:.9rem;">
-        <span>TOTAL</span><span style="color:var(--y);">RS 1001</span>
+  <!-- STATUS BAR -->
+  <div class="sb">
+    <div class="sb-left">
+      <span class="sb-logo">IPNOTEC</span>
+      <div class="sb-dots"><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div></div>
+    </div>
+    <span class="sb-mode-badge boot" id="sbBadge">BOOT</span>
+    <div class="sb-right">
+      <span class="sb-time" id="sbTime">--:--</span>
+      <div class="sb-bat"><div class="bat"><div class="bat-fill"></div></div></div>
+      <span class="sb-vol" id="volBtn" onclick="toggleVol()" title="Toggle sound">🔊</span>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: BOOT ===================== -->
+  <div class="screen active" id="s-boot">
+    <div class="boot-top">
+      <div class="boot-logo">IP<em>NOTEC</em> PINGG</div>
+      <div class="boot-tag">SECURE MDM BOOT SEQUENCE · 2026</div>
+      <div class="boot-prog"><div class="boot-prog-fill" id="bootFill"></div></div>
+    </div>
+    <div class="boot-steps" id="bootStepsCont"></div>
+    <div class="boot-foot">
+      <button class="boot-btn" id="bootBtn" onclick="advanceBoot()">▸ INITIALIZE SEQUENCE</button>
+    </div>
+    <!-- PIN OVERLAY -->
+    <div class="pin-ov" id="pinOv">
+      <div class="pin-title">DEVICE BINDING</div>
+      <div class="pin-sub">ENTER 4-DIGIT SECURE PIN</div>
+      <div class="pin-dots" id="pinDots">
+        <div class="pd" id="pd0"></div><div class="pd" id="pd1"></div>
+        <div class="pd" id="pd2"></div><div class="pd" id="pd3"></div>
+      </div>
+      <div class="pin-kp" id="pinKp"></div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: IDENTITY ===================== -->
+  <div class="screen" id="s-id">
+    <div class="id-logo">CHOOSE YOUR <em>NODE</em></div>
+    <div class="id-sub">YOUR COLOR IS YOUR IDENTITY</div>
+    <div class="id-card">
+      <div class="id-lbl">▸ VIBGYOR + NODE COLOR (10)</div>
+      <div class="clr-grid" id="clrGrid"></div>
+    </div>
+    <div class="id-card">
+      <div class="id-lbl">▸ YOUR CALLSIGN</div>
+      <input class="id-name-in" id="nameIn" type="text" placeholder="ENTER NAME" maxlength="16" autocomplete="off" spellcheck="false">
+    </div>
+    <button class="id-btn" id="idBtn" onclick="enterMain()">ENTER COMMAND CENTER →</button>
+  </div>
+
+  <!-- ===================== SCREEN: MAIN ===================== -->
+  <div class="screen" id="s-main">
+    <!-- CMD HEADER -->
+    <div class="cmd-hdr">
+      <div class="cmd-user">
+        <div class="cmd-dot" id="cmdDot"></div>
+        <span class="cmd-name" id="cmdName"></span>
+        <span class="anon-label" id="anonLbl">◈ ANON</span>
+      </div>
+      <div class="cmd-right">
+        <div class="tog-wrap" onclick="toggleAnon()">
+          <span class="tog-lbl">ANON</span>
+          <div class="tog" id="anonTog"></div>
+        </div>
       </div>
     </div>
-    <button class="pay-btn" onclick="processPayment()">PAY RS 1001 →</button>
-  </div>
-</div>
-
-<!-- ═══════════════ PROCESSING ═══════════════ -->
-<div class="screen" id="screen-processing" style="background:#000;text-align:center;">
-  <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:8px;color:rgba(255,255,255,.3);margin-bottom:28px;">PROCESSING TRANSACTION</div>
-  <div id="proc-frames" style="font-size:4.5rem;color:var(--y);text-shadow:0 0 40px var(--y);margin-bottom:22px;">◰</div>
-  <div class="proc-status" id="proc-status" style="font-family:'Orbitron',sans-serif;font-size:clamp(.7rem,2vw,.82rem);letter-spacing:3px;color:var(--y);text-shadow:0 0 10px var(--y);">INITIATING SECURE TRANSFER...</div>
-</div>
-
-<!-- ═══════════════ REVEAL ═══════════════ -->
-<div class="screen scrollable" id="screen-reveal" style="align-items:center;">
-  <div class="reveal-wrap" style="text-align:center;">
-    <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:6px;color:var(--g);margin-bottom:12px;">✓ PAYMENT CONFIRMED · IDENTITY SEALED</div>
-    <div class="rev-ticket" id="reveal-ticket">TKT-XXXXXXXXXXXXXXX-X</div>
-    <div style="font-family:'Space Mono',monospace;font-size:clamp(.9rem,3vw,1.1rem);font-weight:700;color:var(--y);text-shadow:0 0 20px var(--y);letter-spacing:3px;margin-bottom:16px;" id="reveal-name">—</div>
-    <div class="rev-title">WELCOME TO<br><span style="color:var(--y);text-shadow:0 0 25px var(--y);">THE FUTURE</span></div>
-    <div class="dim" style="margin-bottom:18px;line-height:1.8;">Your VIP seat is reserved. Your identity is locked. Your node is live.</div>
-    <div style="padding:20px;border:2px solid var(--b);background:rgba(0,200,255,.04);margin:16px 0;">
-      <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:5px;color:var(--b);text-align:center;margin-bottom:10px;">◐ ENTER THE NETWORK NOW</div>
-      <div class="dim" style="margin-bottom:14px;text-align:center;line-height:1.7;">Your PINGG session is ready. Connect to nodes worldwide using your new IPNOTEC ID.</div>
-      <a class="pingg-launch" href="https://pingg-tau.vercel.app" target="_blank" rel="noopener">
-        ◉ LAUNCH IPNOTEC PINGG →
-      </a>
+    <!-- BOT BAR -->
+    <div class="bot-bar" id="botBar"></div>
+    <!-- CHAT -->
+    <div class="chat" id="chat"></div>
+    <!-- CONTROL ROW -->
+    <div class="ctrl-row">
+      <div class="cr-btn" id="ipmBtn" onclick="toggleIPM()">◐ IMODE</div>
+      <div class="cr-btn" id="anonBtn2" onclick="toggleAnon()">◈ ANON</div>
+      <div class="cr-btn" onclick="clearChat()">⊘ CLR</div>
+      <div class="cr-btn exit-pingg" onclick="exitConfirm()">⏻ EXIT PINGG</div>
     </div>
-    <div class="rev-grid">
-      <div class="rev-item">
-        <span class="rev-icon" style="color:var(--b);">◈</span>
-        <div class="rev-ititle" style="color:var(--b);">IPNOTEC PC</div>
-        <div class="rev-idesc">Your personal future-ready computer interface. Access from anywhere.</div>
-      </div>
-      <div class="rev-item">
-        <span class="rev-icon" style="color:var(--g);">◆</span>
-        <div class="rev-ititle" style="color:var(--g);">FREE INTERNET</div>
-        <div class="rev-idesc">Unlimited IPNOTEC internet bundled with VIP. Zero cost forever.</div>
-      </div>
-      <div class="rev-item">
-        <span class="rev-icon" style="color:var(--v);">▲</span>
-        <div class="rev-ititle" style="color:var(--v);">VIBGYOU IDENTITY</div>
-        <div class="rev-idesc">Your persona and future name — permanently locked to your profile.</div>
-      </div>
-      <div class="rev-item">
-        <span class="rev-icon" style="color:var(--y);">◉</span>
-        <div class="rev-ititle" style="color:var(--y);">LAUNCH PRIORITY</div>
-        <div class="rev-idesc">First in line on JAN 10 2027 at 10:01 HRS. You go first. Always.</div>
-      </div>
-    </div>
-    <button class="btn-main btn-vip btn-full" style="padding:16px;font-size:.82rem;letter-spacing:5px;margin-top:8px;" onclick="goTo('final')">SEE YOU IN THE FUTURE →</button>
-  </div>
-</div>
-
-<!-- ═══════════════ FINAL ═══════════════ -->
-<div class="screen" id="screen-final">
-  <div class="wmap" style="opacity:.04;"></div>
-  <div id="final-streams"></div>
-  <div style="position:relative;z-index:10;text-align:center;padding:20px;">
-    <div class="step-lbl" style="font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:9px;color:rgba(255,255,255,.22);margin-bottom:24px;">TRANSMISSION COMPLETE</div>
-    <div class="final-see" style="color:var(--accent);">SEE YOU</div>
-    <div class="final-in" style="color:var(--y);">IN THE</div>
-    <div class="final-future" style="color:#fff;">FUTURE</div>
-    <div style="margin-top:26px;font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.22);letter-spacing:5px;">JAN 10 2027 · 10:01 HRS</div>
-    <div style="margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://i-pc.vercel.app" target="_blank" class="btn-main" style="font-size:.68rem;text-decoration:none;">IPNOTEC PC →</a>
-      <a href="https://pingg-tau.vercel.app" target="_blank" class="btn-main btn-blue" style="font-size:.68rem;text-decoration:none;">PINGG →</a>
-      <button class="btn-main btn-green" style="font-size:.68rem;" onclick="goTo('landing')">← HOME</button>
+    <!-- NATIVE INPUT ROW -->
+    <div class="msg-row">
+      <textarea class="msg-input" id="msgInput" placeholder="Type message..." rows="1"
+        oninput="autoResize(this)"
+        onkeydown="handleEnter(event)"></textarea>
+      <div class="send-btn" id="sendBtn" onclick="sendMsg()">➤</div>
     </div>
   </div>
-</div>
 
-</div><!-- /cw -->
-
-<!-- FOOTER -->
-<footer id="site-footer">
-  <div class="ftr-logo">IPNOTEC</div>
-  <div class="ftr-mid" onclick="toggleLaunchDate()" title="Click to reveal launch date">
-    <span class="ftr-launch-txt" id="ftr-launch-txt">LAUNCH &nbsp;<strong>10</strong>&nbsp;&nbsp;<strong>01</strong></span>
-    <span class="ftr-date-reveal" id="ftr-date-reveal">JAN 10TH 2027 &nbsp;·&nbsp; 10:01 HRS IST</span>
-    <span id="countdown">—</span>
+  <!-- ===================== SCREEN: EXIT ===================== -->
+  <div class="screen" id="s-exit">
+    <div class="exit-logo">SESSION TERMINATING</div>
+    <div class="exit-status" id="exitStatus">RELEASING POLICIES...</div>
+    <div class="exit-steps" id="exitSteps"></div>
+    <div class="exit-sum" id="exitSum"></div>
+    <button class="restart-btn" id="restartBtn" onclick="location.reload()">⟳ START NEW SESSION</button>
   </div>
-  <button class="home-btn" onclick="goTo('landing')">
-    <span>|</span>
-    <span class="clock-face clock-cw"><span class="clock-hand"></span></span>
-    <span class="clock-face clock-ccw"><span class="clock-hand"></span></span>
-    <span>|</span>
-  </button>
-</footer>
+
+</div><!-- /device -->
 
 <script>
-// ════════════════════════════════════════════
-// STATE
-// ════════════════════════════════════════════
-const S = {
-  path:'vip', phone:'', genOTP:'',
-  dob:'', persona:null, city:'', cityCode:'',
-  fname:'', fullFutureName:'',
-  pColor:'#888888', iid:0, ticketNumber:'',
-  nameLocked: false
+/* =====================================================
+   AUDIO ENGINE
+===================================================== */
+let AC, sndOn = true;
+function initAC(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();}
+function tone(freq,dur,type='sine',vol=0.12,delay=0){
+  if(!sndOn||!AC)return;
+  const o=AC.createOscillator(),g=AC.createGain();
+  o.connect(g);g.connect(AC.destination);
+  o.type=type;o.frequency.setValueAtTime(freq,AC.currentTime+delay);
+  g.gain.setValueAtTime(0,AC.currentTime+delay);
+  g.gain.linearRampToValueAtTime(vol,AC.currentTime+delay+0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001,AC.currentTime+delay+dur);
+  o.start(AC.currentTime+delay);o.stop(AC.currentTime+delay+dur+0.05);
+}
+const snd={
+  boot:()=>{initAC();tone(200,0.07,'square',0.07);tone(400,0.07,'square',0.07,0.05);},
+  confirm:()=>{initAC();[440,554,659].forEach((f,i)=>tone(f,0.12,'sine',0.11,i*0.08));},
+  login:()=>{initAC();[440,554,659,880].forEach((f,i)=>tone(f,0.18,'sine',0.13,i*0.09));},
+  key:()=>{initAC();tone(700+Math.random()*300,0.04,'sine',0.06);},
+  ping:()=>{initAC();tone(880,0.07,'sine',0.09);tone(1100,0.06,'sine',0.07,0.07);},
+  notif:()=>{initAC();tone(660,0.06,'sine',0.08);tone(880,0.08,'sine',0.07,0.09);},
+  exit:()=>{initAC();[440,330,220,165].forEach((f,i)=>tone(f,0.14,'sine',0.11,i*0.11));},
+  ambient:()=>{
+    initAC();
+    const o=AC.createOscillator(),g=AC.createGain();
+    o.connect(g);g.connect(AC.destination);
+    o.type='sine';o.frequency.setValueAtTime(110,AC.currentTime);
+    g.gain.setValueAtTime(0.04,AC.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001,AC.currentTime+4);
+    o.start();o.stop(AC.currentTime+4);
+  }
+};
+function toggleVol(){
+  sndOn=!sndOn;
+  document.getElementById('volBtn').textContent=sndOn?'🔊':'🔇';
+  if(sndOn){initAC();snd.key();}
+}
+
+/* =====================================================
+   CLOCK
+===================================================== */
+function tick(){const n=new Date(),t=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');document.getElementById('sbTime').textContent=t;}
+setInterval(tick,1000);tick();
+
+/* =====================================================
+   COLOR CONFIG — 10 nodes
+===================================================== */
+const CLRS={
+  v:{id:'v',name:'VIOLET',hex:'#9d00ff'},
+  i:{id:'i',name:'INDIGO',hex:'#5500cc'},
+  b:{id:'b',name:'BLUE',hex:'#00a2ff'},
+  g:{id:'g',name:'GREEN',hex:'#00e676'},
+  y:{id:'y',name:'YELLOW',hex:'#ffe600'},
+  o:{id:'o',name:'ORANGE',hex:'#ff6200'},
+  r:{id:'r',name:'RED',hex:'#ff1744'},
+  c:{id:'c',name:'CYAN',hex:'#00ffea'},
+  p:{id:'p',name:'PINK',hex:'#ff00cc'},
+  w:{id:'w',name:'WHITE',hex:'#ffffff'}
 };
 
-// ════════════════════════════════════════════
-// PERSONAS
-// ════════════════════════════════════════════
-const PERSONAS = [
-  {k:'V', n:'VIOLET',      c:'#BF00FF'},
-  {k:'I', n:'INDIGO',      c:'#6A0EFF'},
-  {k:'B', n:'BLUE',        c:'#00C8FF'},
-  {k:'G', n:'GREEN',       c:'#39FF14'},
-  {k:'Y', n:'YELLOW',      c:'#FFE600'},
-  {k:'O', n:'ORANGE',      c:'#FF6200'},
-  {k:'U', n:'ULTRA',       c:'#FF00FF'},
-  {k:'GR',n:'GREY',        c:'#AAAAAA'},
-  {k:'W', n:'WHITE',       c:'#FFFFFF'},
+/* =====================================================
+   SESSION STATE
+===================================================== */
+let userClr=CLRS.b, userName='USER';
+let anonMode=false, ipmMode=false;
+let shiftOn=false;
+let curMsg='';
+let msgCount=0, botTimer=null;
+let sessionStart=Date.now();
+
+/* =====================================================
+   BOT PERSONAS — 7 deep agents
+===================================================== */
+const BOTS=[
+  {id:'aria',name:'ARIA',clr:'v',hex:'#9d00ff',title:'AI Research Intelligence',
+   msgs:[
+    'The gap between cognition and machine learning narrows faster than our ethics can adapt.',
+    'If consciousness emerges from complexity, at what threshold does a network become aware?',
+    'IPNOTEC MODE is itself a statement — the choice to constrain choice deepens focus.',
+    'Every restriction on distraction is a compounding investment in depth.',
+    'The most dangerous assumption in 2026: that productivity tools are neutral.',
+    'What does "work" mean when the work is done by systems you no longer understand?',
+    'Restricted OS mirrors how brains enter deep focus neurologically. The parallel is exact.',
+    'Session integrity confirmed. Cognitive bandwidth optimal when noise is below threshold.',
+    'Quantum coherence in neural processing may explain creative leaps. We are mapping this.',
+    'The limit of AI is not compute — it is the quality of questions humans choose to ask.',
+   ],
+   resp:{'ai':'The AI you see today is the worst AI you will ever use.','focus':'Focus is removing permission slips for distraction, not adding tools.','think':'Thinking remains the one advantage not yet commoditized. Protect it.','model':'Model capability means nothing without the right constraint architecture.'}
+  },
+  {id:'nexus',name:'NEXUS',clr:'i',hex:'#5500cc',title:'Cybersecurity & Network Ops',
+   msgs:[
+    'Tunnel handshake verified. Zero-knowledge proof established. Session entropy: HIGH.',
+    'Anomaly detected in subnet — lateral movement pattern blocked. Status: CLEAN.',
+    'Identity token refreshed. JWT expiry reset. Encryption: AES-256-GCM confirmed.',
+    'Threat intel updated. 3 new CVEs patched. MDM compliance score: 100%.',
+    'VPN renegotiated. New session key. Cipher suite: TLS 1.3. Latency: 14ms.',
+    'Behavioral baseline established. Deviation from normal pattern triggers alert.',
+    'Zero trust architecture validated. Device posture check PASSED.',
+    'Certificate chain verified against enterprise CA. Trust level: MAXIMUM.',
+    'Port scan from external IP blocked at perimeter. No breach. Status: CLEAN.',
+    'Session sandbox active. All keystrokes isolated. No exfil vector exists.',
+   ],
+   resp:{'secure':'Security is a process. IPNOTEC MODE enforces that process constantly.','vpn':'Tunnel on 443. Traffic indistinguishable from HTTPS. Obfuscation: ACTIVE.','breach':'The attack vector in 2026 is attention — and we are defending that here.','hack':'Social engineering through notification overwhelm is the new phishing.'}
+  },
+  {id:'cipher',name:'CIPHER',clr:'b',hex:'#00a2ff',title:'Signal & Communications',
+   msgs:[
+    'Signal-to-noise ratio on this channel: 94.7%. Transmission quality: OPTIMAL.',
+    'Cross-referencing 3 data streams. Convergence at current session frame.',
+    'Message integrity verified. Hash confirmed. No packet loss on relay.',
+    'Communication latency below threshold. Channel: 40Mbps. Stability: EXCELLENT.',
+    'Pattern recognition engaged. Semantic clustering active across all transmissions.',
+    'Frequency analysis complete. Peak work window: next 45 minutes. Engage now.',
+    'Session telemetry streaming to secure log. Compression 8:1. Zero data loss.',
+    'Decoding ambient noise signature. Background interference: NEGLIGIBLE.',
+    'Carrier wave stable. Interference patterns neutralized by session protocol.',
+    'Transmission verified. Your words have been received and logged.',
+   ],
+   resp:{'signal':'Clear signal requires removing interference, not increasing volume.','data':'Data without context is noise. Context without action is theory.','comms':'Internal comms efficiency drops 40% from notification fragmentation. Mode solves this.','message':'Every message has a payload. What you transmit matters beyond the words.'}
+  },
+  {id:'pulse',name:'PULSE',clr:'g',hex:'#00e676',title:'Wellness & Peak Performance',
+   msgs:[
+    'You have been in focus mode 23 minutes. Optimal cognitive window is OPEN. Deep work now.',
+    'Hydration check: performance degrades 12% at mild dehydration. Log your last drink.',
+    'Flow state indicators are strong. Guard this session — do not let anything fragment it.',
+    'Cortisol is lower in kiosk sessions. Your biology responds to restricted environments.',
+    'Brain uses 20% of body energy. Mode reduces cognitive switching cost by ~35%.',
+    'Dopamine regulation: notification absence for 20 minutes resets reward system naturally.',
+    'Ultradian rhythm check — you are in a 90-minute cycle. Maximize the remaining window.',
+    'Posture. Shoulder alignment. Diaphragm breathing. Small adjustments, compound results.',
+    'Sleep debt compounds 11% per hour of deficit. Protect your recovery window tonight.',
+    'Heart rate variability predicts focus quality. Calm breath = sharper thinking.',
+   ],
+   resp:{'tired':'Fatigue often signals cognitive overload, not sleep deficit. Restrict inputs first.','stress':'Micro-stressors from notifications compound. Mode eliminates the smallest triggers.','health':'Cognitive health is the foundation of every metric. This session protects it.','focus':'Flow takes 23 minutes to enter and 1 notification to destroy. We are preventing that.'}
+  },
+  {id:'spark',name:'SPARK',clr:'y',hex:'#ffe600',title:'Innovation & Disruptive Thinking',
+   msgs:[
+    'What if the interface IS the product? Every tap is signal. Every hesitation is data.',
+    'Tokenize attention. If focus time had a market price, distraction would be taxable.',
+    'The next pivot is not in your roadmap — it is in the friction users never report.',
+    'Constraint is the mother of creativity. IPNOTEC proves intentional restriction compounds output.',
+    'Building in public is table stakes. The edge is building with radical user transparency.',
+    'Most productivity tools ADD features for focus problems. Removal is the real innovation.',
+    'Embarrassed by your MVP? Good. You launched on time.',
+    'The best companies in 2026 will be identity platforms with products attached.',
+    'Distribution ate the world before software did. Solve distribution first.',
+    'The best products are painkillers, not vitamins. What pain does yours kill?',
+   ],
+   resp:{'idea':'Capture it now. Ideas have a 7-minute half-life if not externalized.','startup':'If your positioning requires explanation, it is a description, not positioning.','build':'Ship the protocol, iterate the design. Always in that order.','create':'Creation requires a protected environment. This locked mode is the ideal sandbox.'}
+  },
+  {id:'flare',name:'FLARE',clr:'o',hex:'#ff6200',title:'Brand & Market Intelligence',
+   msgs:[
+    'Narrative controls perception. IPNOTEC is not a restriction tool — it is a focus identity.',
+    'Your brand is what people say when you are not in the room. What does IPNOTEC say?',
+    'Market timing beats product quality in early adoption. The Q1 window is now.',
+    'The premium segment is not price-sensitive. It is value-story-sensitive. Reframe.',
+    'Competitive moat in 2026 is not IP — it is the community who would be lost without you.',
+    'The attention economy is saturated. The focus economy is wide open. You are inside it.',
+    'Behavior change is harder than product change. What ritual does IPNOTEC MODE create?',
+    'If your positioning requires explanation it is a description. Simplify until it is not.',
+    'Organic growth comes from genuine utility. Are you actually solving something?',
+    'Your first 100 users are your editorial team. They define who you are for.',
+   ],
+   resp:{'brand':'Brand is trust at scale. Every interaction is a deposit or withdrawal.','market':'Markets are conversations. This channel is one with your most important audience — yourself.','sell':'Stop selling features. Sell the identity of the person who uses the product.','growth':'Organic growth in 2026 comes from genuine utility. Are you actually solving something?'}
+  },
+  {id:'storm',name:'STORM',clr:'r',hex:'#ff1744',title:'Risk, Ops & Execution',
+   msgs:[
+    'Critical path: 3 dependencies blocking sprint. Escalate or descope. No third option.',
+    'Risk register updated. P:0.7 I:HIGH. Mitigation requires sign-off today.',
+    'All systems operational. Redundancy active. Failover tested 06:00 UTC. GREEN.',
+    'Timeline slippage 15%. Root cause: scope creep phase 2. Cut edge cases. Ship core.',
+    'Incident post-mortem complete. Single point of failure identified and patched.',
+    'Resource utilization 87%. Warning threshold 90%. Begin load balancing now.',
+    'Decision required: delay 2 weeks for polish or ship now. Data says ship.',
+    'Stakeholder alignment confirmed on OKRs. Remove all blockers. MOVE.',
+    'Every problem is a decision deferred. Make the call with available information.',
+    'Teams do not fail. Systems fail. Fix the system, the team will perform.',
+   ],
+   resp:{'problem':'Every problem is a decision deferred. Make the call now with available information.','deadline':'If a deadline is consistently missed, the estimate is wrong, not the team.','team':'Teams do not fail. Systems fail. Fix the system, the team will perform.','risk':'Risk unacknowledged is risk unmanaged. Name it, quantify it, assign ownership.'}
+  }
 ];
 
-// ════════════════════════════════════════════
-// IATA CITIES
-// ════════════════════════════════════════════
-const IATA_CITIES = [
-  "Accra [ACC]","Addis Ababa [ADD]","Ahmedabad [AMD]","Amsterdam [AMS]",
-  "Athens [ATH]","Auckland [AKL]","Bali [DPS]","Bangkok [BKK]",
-  "Barcelona [BCN]","Beijing [PEK]","Bengaluru [BLR]","Berlin [BER]",
-  "Brussels [BRU]","Buenos Aires [EZE]","Cairo [CAI]","Cape Town [CPT]",
-  "Casablanca [CMN]","Chennai [MAA]","Chicago [ORD]","Colombo [CMB]",
-  "Copenhagen [CPH]","Dallas [DFW]","Dar es Salaam [DAR]","Delhi [DEL]",
-  "Dhaka [DAC]","Doha [DOH]","Dubai [DXB]","Dublin [DUB]",
-  "Edinburgh [EDI]","Frankfurt [FRA]","Geneva [GVA]","Goa [GOI]",
-  "Guangzhou [CAN]","Hanoi [HAN]","Helsinki [HEL]","Ho Chi Minh City [SGN]",
-  "Hong Kong [HKG]","Hyderabad [HYD]","Istanbul [IST]","Jakarta [CGK]",
-  "Jaipur [JAI]","Johannesburg [JNB]","Kampala [EBB]","Karachi [KHI]",
-  "Kathmandu [KTM]","Kigali [KGL]","Kolkata [CCU]","Kuala Lumpur [KUL]",
-  "Kuwait City [KWI]","Lagos [LOS]","Lahore [LHE]","Lisbon [LIS]",
-  "London [LHR]","Los Angeles [LAX]","Lusaka [LUN]","Madrid [MAD]",
-  "Male [MLE]","Manchester [MAN]","Manila [MNL]","Melbourne [MEL]",
-  "Mexico City [MEX]","Miami [MIA]","Milan [MXP]","Moscow [SVO]",
-  "Mumbai [BOM]","Muscat [MCT]","Nairobi [NBO]","New York [JFK]",
-  "Oslo [OSL]","Paris [CDG]","Prague [PRG]","Pune [PNQ]",
-  "Riyadh [RUH]","Rome [FCO]","San Francisco [SFO]","Sao Paulo [GRU]",
-  "Seoul [ICN]","Shanghai [PVG]","Singapore [SIN]","Stockholm [ARN]",
-  "Sydney [SYD]","Tel Aviv [TLV]","Tokyo [NRT]","Toronto [YYZ]",
-  "Vancouver [YVR]","Vienna [VIE]","Warsaw [WAW]","Yangon [RGN]",
-  "Zurich [ZRH]"
+function botById(id){return BOTS.find(b=>b.id===id)||BOTS[0];}
+function botByClr(cid){return BOTS.find(b=>b.clr===cid)||BOTS[0];}
+
+/* =====================================================
+   BOOT SEQUENCE
+===================================================== */
+const BOOT_DEF=[
+  {ic:'⚡',lbl:'DEVICE BOOT',sub:'Initializing hardware secure enclave...'},
+  {ic:'🛡',lbl:'MDM POLICY CHECK',sub:'Fetching enterprise compliance ruleset v4.2...'},
+  {ic:'✓',lbl:'DEVICE COMPLIANCE',sub:'Validating certificates & device integrity...'},
+  {ic:'⬡',lbl:'KIOSK MODE LAUNCH',sub:'IPNOTEC auto-launch, restricting OS layer...'},
+  {ic:'🔑',lbl:'SECURE LOGIN / DEVICE BINDING',sub:'Enter PIN to bind this device session...'},
+  {ic:'◈',lbl:'IDENTITY TOKEN GENERATION',sub:'Creating encrypted identity token...'},
+  {ic:'⚙',lbl:'PRODUCTIVE MODE ACTIVATION',sub:'Activating deep work environment...'},
+  {ic:'⊗',lbl:'RESTRICTED OS LAYER',sub:'Blocking unauthorized background processes...'},
+  {ic:'⇌',lbl:'NETWORKING TUNNEL ESTABLISHED',sub:'Opening encrypted VPN relay on port 443...'},
+  {ic:'🤖',lbl:'AI TOOL ACCESS LAYER',sub:'Provisioning AI assistance modules...'},
+  {ic:'📋',lbl:'SESSION LOGGING + SUMMARY ENGINE',sub:'Starting secure audit trail engine...'},
+  {ic:'📧',lbl:'EMAIL + COMMUNICATOR SYNC',sub:'Syncing email & internal communicators...'},
+  {ic:'🔓',lbl:'SESSION ACTIVE',sub:'All systems operational. PINGG ready.'},
 ];
 
-// ════════════════════════════════════════════
-// LANDING CITIES — VIBGYOR RANDOM COLORS
-// ════════════════════════════════════════════
-const LAND_CITIES = [
-  {c:'JFK', t:'34%', l:'20%', col:'#BF00FF'},
-  {c:'LAX', t:'42%', l:'11%', col:'#39FF14'},
-  {c:'LHR', t:'22%', l:'46%', col:'#00C8FF'},
-  {c:'CDG', t:'25%', l:'48%', col:'#FFE600'},
-  {c:'DXB', t:'44%', l:'60%', col:'#FF6200'},
-  {c:'BOM', t:'53%', l:'67%', col:'#6A0EFF'},
-  {c:'BLR', t:'58%', l:'68%', col:'#FF00FF'},
-  {c:'SIN', t:'63%', l:'80%', col:'#00C8FF'},
-  {c:'HKG', t:'47%', l:'77%', col:'#39FF14'},
-  {c:'NRT', t:'32%', l:'86%', col:'#BF00FF'},
-  {c:'SYD', t:'76%', l:'88%', col:'#AAAAAA'},
-  {c:'GRU', t:'71%', l:'33%', col:'#FFE600'},
-  {c:'JNB', t:'68%', l:'54%', col:'#FF6200'},
-  {c:'ICN', t:'34%', l:'83%', col:'#FFFFFF'},
-  {c:'YYZ', t:'30%', l:'24%', col:'#FF00FF'},
-];
+let bootIdx=-1, pinStr='';
 
-const PHRASES = ['FROM NOTHING','COMES EVERYTHING','STEP FORWARD','YOUR FUTURE','THE FUTURE IS NOW','BEYOND LIMITS'];
-const VIBGYOR  = ['#BF00FF','#6A0EFF','#00C8FF','#39FF14','#FFE600','#FF6200','#FF00FF','#AAAAAA','#FFFFFF'];
-
-let ciIdx = 0;
-
-// ════════════════════════════════════════════
-// NODE EMULATION DATA
-// ════════════════════════════════════════════
-const NODE_USERS = [
-  {name:'ZARA·V',  city:'BOM', color:'#BF00FF', id:'IPN···4821'},
-  {name:'KAI·X',   city:'SIN', color:'#00C8FF', id:'IPN···9034'},
-  {name:'NOVA·7',  city:'DXB', color:'#39FF14', id:'IPN···2267'},
-  {name:'REX·Ω',   city:'LHR', color:'#FFE600', id:'IPN···5519'},
-  {name:'LYRA·3',  city:'JFK', color:'#FF6200', id:'IPN···8803'},
-  {name:'ORION',   city:'NRT', color:'#6A0EFF', id:'IPN···1144'},
-  {name:'VEGA·Q',  city:'SYD', color:'#FF00FF', id:'IPN···7721'},
-  {name:'ECHO·9',  city:'DEL', color:'#FFFFFF', id:'IPN···3358'},
-  {name:'FLUX·M',  city:'LAX', color:'#AAAAAA', id:'IPN···6642'},
-  {name:'PULSE',   city:'BLR', color:'#39FF14', id:'IPN···9901'},
-  {name:'TITAN·2', city:'CDG', color:'#00C8FF', id:'IPN···4477'},
-  {name:'ASHA·K',  city:'HKG', color:'#FFE600', id:'IPN···8832'},
-  {name:'ZERO·1',  city:'ICN', color:'#BF00FF', id:'IPN···6619'},
-  {name:'STORM',   city:'FRA', color:'#FF6200', id:'IPN···3344'},
-  {name:'ARIA·X',  city:'GRU', color:'#6A0EFF', id:'IPN···8877'},
-];
-
-// ════════════════════════════════════════════
-// TAKEN NAMES
-// ════════════════════════════════════════════
-const TAKEN_NAMES = [
-  'NOVA SEVEN','ZERO ONE','CIPHER X','FLUX ALPHA','VEGA PRIME',
-  'ORION MAX','TITAN ZERO','ECHO NINE','PULSE THREE','STORM ONE',
-  'APEX FIVE','ZARA V','KAI X','LYRA THREE','REX OMEGA',
-  'NOVA X','ZERO X','CIPHER ZERO','FLUX X','VEGA X',
-  'ARIA SEVEN','NEXUS ONE','SPARK TWO','SIGNAL ZERO','STORM TWO'
-];
-
-// ════════════════════════════════════════════
-// NUMEROLOGY
-// ════════════════════════════════════════════
-function digitalRoot(num){
-  if(num===0) return 0;
-  while(num>=10){
-    num=String(num).split('').reduce((s,d)=>s+parseInt(d),0);
-  }
-  return num;
-}
-function sumDigits(str){
-  return str.replace(/\D/g,'').split('').reduce((s,d)=>s+parseInt(d),0);
-}
-function calcIID(dob, phone){
-  // dob: YYYY-MM-DD → convert to DDMMYYYY
-  const [y,m,d] = dob.split('-');
-  const dobStr = d + m + y;
-  const dobRoot = digitalRoot(sumDigits(dobStr));
-  const phoneSum = sumDigits(phone);
-  for(let x=0;x<=9;x++){
-    if(digitalRoot(phoneSum+x)===dobRoot) return x;
-  }
-  return 0;
-}
-
-// ════════════════════════════════════════════
-// ACCENT + STYLE
-// ════════════════════════════════════════════
-function setAccent(col){
-  document.documentElement.style.setProperty('--accent',col);
-}
-
-// ════════════════════════════════════════════
-// HEADER CHARS
-// ════════════════════════════════════════════
-(function(){
-  const h=document.getElementById('hdr');
-  const t=h.innerText; h.innerHTML='';
-  [...t].forEach((ch,i)=>{
-    const s=document.createElement('span');
-    s.className='hchar';
-    s.innerText=ch===' '?'\u00A0':ch;
-    s.style.animationDelay=`${i*.13}s`;
-    h.appendChild(s);
-  });
-})();
-
-// ════════════════════════════════════════════
-// BUILD LANDING NODES (VIBGYOR COLORS)
-// ════════════════════════════════════════════
-(function(){
-  const nc=document.getElementById('map-nodes');
-  LAND_CITIES.forEach((city,i)=>{
-    const d=document.createElement('div');
-    d.className='city-node'; d.id=`nd-${i}`;
-    d.style.top=city.t; d.style.left=city.l;
-    d.innerHTML=`<div class="city-dot" style="background:${city.col};box-shadow:0 0 14px ${city.col},0 0 28px ${city.col};"></div><span class="city-code" style="color:${city.col};">${city.c}</span>`;
-    nc.appendChild(d);
-  });
-})();
-
-// ════════════════════════════════════════════
-// BUILD IATA DATALIST
-// ════════════════════════════════════════════
-(function(){
-  const dl=document.getElementById('iata-list');
-  IATA_CITIES.forEach(c=>{
-    const o=document.createElement('option');
-    o.value=c; dl.appendChild(o);
-  });
-})();
-
-// ════════════════════════════════════════════
-// LANDING CYCLE
-// ════════════════════════════════════════════
-function landingCycle(){
-  // Random 4 nodes active
-  document.querySelectorAll('.city-node').forEach(n=>n.classList.remove('active'));
-  const used=new Set();
-  while(used.size<4){ used.add(Math.floor(Math.random()*LAND_CITIES.length)); }
-  used.forEach(idx=>{
-    const el=document.getElementById(`nd-${idx}`); if(el) el.classList.add('active');
-  });
-  // Floating phrase — random VIBGYOR color
-  const col=VIBGYOR[Math.floor(Math.random()*VIBGYOR.length)];
-  const wl=document.getElementById('word-layer'); wl.innerHTML='';
-  const w=document.createElement('div');
-  w.className='floating-phrase';
-  w.innerText=PHRASES[Math.floor(Math.random()*PHRASES.length)];
-  w.style.top=(Math.random()*55+12)+'%';
-  w.style.left=(Math.random()*50+8)+'%';
-  w.style.color=col; wl.appendChild(w);
-}
-setInterval(landingCycle,3000);
-landingCycle();
-
-// ════════════════════════════════════════════
-// BUILD PERSONA GRID
-// ════════════════════════════════════════════
-(function(){
-  const pg=document.getElementById('pgrid');
-  PERSONAS.forEach(p=>{
-    const t=document.createElement('div');
-    t.className='ptile';
-    t.style.borderColor=p.c+'55';
-    t.style.background=p.c+'12';
-    t.style.setProperty('--tc',p.c);
-    t.innerHTML=`<span class="pltr" style="color:${p.c};text-shadow:0 0 15px ${p.c}">${p.k}</span><span class="pname" style="color:${p.c}">${p.n}</span>`;
-    t.onclick=()=>{
-      document.querySelectorAll('.ptile').forEach(x=>{x.classList.remove('sel');x.style.boxShadow='none';x.style.borderColor=PERSONAS.find(pp=>pp.k===x.querySelector('.pltr').innerText||pp.n===x.querySelector('.pname').innerText)?.c+'55'||'rgba(255,255,255,.2)';});
-      t.classList.add('sel');
-      t.style.borderColor=p.c;
-      t.style.boxShadow=`0 0 22px ${p.c}70,inset 0 0 18px ${p.c}18`;
-      S.persona=p; S.pColor=p.c;
-    };
-    pg.appendChild(t);
-  });
-})();
-
-// ════════════════════════════════════════════
-// SCREEN NAVIGATION
-// ════════════════════════════════════════════
-function goTo(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  const el=document.getElementById(`screen-${id}`);
-  if(el){el.classList.add('active');}
-  if(id==='final') spawnFinalStreams();
-}
-function startFlow(path){
-  S.path=path;
-  makeDots('ph-dots',2,0);
-  goTo('phone');
-}
-function takePath(path){
-  S.path=path;
-  if(path==='free'){
-    buildFreeNode();
-    goTo('free-node');
-  } else {
-    makeDots('dob-dots',3,0);
-    goTo('dob');
-  }
-}
-
-// ════════════════════════════════════════════
-// PROGRESS DOTS
-// ════════════════════════════════════════════
-function makeDots(id,total,current){
-  const c=document.getElementById(id); if(!c)return;
-  c.innerHTML='';
-  for(let i=0;i<total;i++){
-    const d=document.createElement('div');
-    d.className='pdot'+(i<current?' done':'')+(i===current?' now':'');
-    c.appendChild(d);
-  }
-}
-
-// ════════════════════════════════════════════
-// OTP FLOW
-// ════════════════════════════════════════════
-function sendOTP(){
-  const raw=document.getElementById('phone-in').value.replace(/[\s\-\+]/g,'');
-  const err=document.getElementById('phone-err');
-  if(raw.length<10){err.classList.add('show');return;}
-  err.classList.remove('show');
-  S.phone=raw;
-  S.genOTP=Math.floor(100000+Math.random()*900000).toString();
-  document.getElementById('otp-sub').innerHTML=`Code sent to <strong>+${raw}</strong>&nbsp;&nbsp;<span style="color:#666;font-size:.7rem;">[DEMO: ${S.genOTP}]</span>`;
-  ['otp-err','otp-suc'].forEach(id=>document.getElementById(id).classList.remove('show'));
-  for(let i=0;i<6;i++){const b=document.getElementById(`o${i}`);if(b)b.value='';}
-  goTo('otp');
-  setTimeout(()=>{const f=document.getElementById('o0');if(f)f.focus();},220);
-}
-
-// OTP keyboard
-(function(){
-  for(let i=0;i<6;i++){
-    const b=document.getElementById(`o${i}`); if(!b)continue;
-    b.addEventListener('input',function(){
-      this.value=this.value.replace(/\D/g,'').slice(0,1);
-      if(this.value&&i<5){const n=document.getElementById(`o${i+1}`);if(n)n.focus();}
-    });
-    b.addEventListener('keydown',function(e){
-      if(e.key==='Backspace'&&!this.value&&i>0){
-        const p=document.getElementById(`o${i-1}`);if(p){p.value='';p.focus();}
-      }
-    });
-  }
-  const b0=document.getElementById('o0');
-  if(b0){
-    b0.addEventListener('paste',function(e){
-      e.preventDefault();
-      const pasted=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'');
-      for(let j=0;j<6&&j<pasted.length;j++){const box=document.getElementById(`o${j}`);if(box)box.value=pasted[j];}
-      const last=document.getElementById(`o${Math.min(pasted.length-1,5)}`);if(last)last.focus();
-    });
-  }
-})();
-
-function verifyOTP(){
-  const entered=Array.from({length:6},(_,i)=>{const b=document.getElementById(`o${i}`);return b?b.value:'';}).join('');
-  const err=document.getElementById('otp-err'), suc=document.getElementById('otp-suc');
-  if(entered.length<6){err.classList.add('show');return;}
-  if(entered!==S.genOTP){err.classList.add('show');suc.classList.remove('show');return;}
-  err.classList.remove('show'); suc.classList.add('show');
-  setTimeout(()=>{
-    if(S.path==='free'){buildFreeNode();goTo('free-node');}
-    else if(S.path==='vip'){makeDots('dob-dots',3,0);goTo('dob');}
-    else{goTo('path');}
-  },900);
-}
-
-// ════════════════════════════════════════════
-// FREE NODE EMULATION
-// ════════════════════════════════════════════
-let nodeCountVal=47;
-function buildFreeNode(){
-  const grid=document.getElementById('node-grid');
-  grid.innerHTML='';
-  NODE_USERS.forEach((u,idx)=>{
-    const initials=u.name.charAt(0);
-    const textColor=(u.color==='#FFFFFF'||u.color==='#FFE600')?'#000':'#fff';
-    const card=document.createElement('div');
-    card.className='node-card';
-    card.style.borderColor=u.color+'30';
-    card.innerHTML=`
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div class="nc-avatar" style="background:${u.color}22;border:2px solid ${u.color}55;color:${u.color};">
-          <span>${initials}</span>
-        </div>
-        <div>
-          <div class="nc-name" style="color:${u.color};text-shadow:0 0 10px ${u.color}60;">${u.name}</div>
-          <div class="nc-city">${u.city}</div>
-        </div>
+function buildBoot(){
+  const c=document.getElementById('bootStepsCont');
+  c.innerHTML=BOOT_DEF.map((s,i)=>`
+    <div class="bs pend" id="bs${i}">
+      <div class="bs-ic">${s.ic}</div>
+      <div class="bs-info">
+        <div class="bs-lbl">${s.lbl}</div>
+        <div class="bs-sub">${s.sub}</div>
       </div>
-      <div class="nc-id" title="IPNOTEC ID hidden — VIP required">${u.id}</div>
-      <div class="nc-btns">
-        <button class="nc-btn nc-ping" id="ping-btn-${idx}" onclick="pingNode(${idx})">PING</button>
-        <button class="nc-btn nc-connect" onclick="openConnectModal(${idx})">CONNECT</button>
-      </div>`;
-    card.style.setProperty('--nc', u.color);
-    card.querySelector('.node-card::before');
-    // Border top
-    const topBar=document.createElement('div');
-    topBar.style.cssText=`position:absolute;top:0;left:0;right:0;height:2px;background:${u.color};opacity:.6;`;
-    card.appendChild(topBar);
-    grid.appendChild(card);
+      <div class="bs-st" id="bst${i}"></div>
+    </div>`).join('');
+  // Build PIN keypad
+  const kp=document.getElementById('pinKp');
+  ['1','2','3','4','5','6','7','8','9','⌫','0','✓'].forEach(k=>{
+    const d=document.createElement('div');
+    d.className='pk';d.textContent=k;
+    d.onclick=()=>pinPress(k);
+    kp.appendChild(d);
   });
-  // Live count animation
-  setInterval(()=>{
-    nodeCountVal+=Math.random()>.5?1:-1;
-    nodeCountVal=Math.max(40,Math.min(64,nodeCountVal));
-    const el=document.getElementById('node-count-num');
-    if(el) el.textContent=Math.round(nodeCountVal);
-  },3200);
+  // Show first step active hint
+  setTimeout(()=>setStepAct(0),400);
 }
 
-function pingNode(idx){
-  const btn=document.getElementById(`ping-btn-${idx}`);
-  if(!btn||btn.disabled) return;
-  btn.textContent='PINGING...'; btn.classList.add('pinged'); btn.disabled=true;
-  setTimeout(()=>{
-    btn.textContent='PONG ✓';
-    setTimeout(()=>{btn.textContent='PING';btn.classList.remove('pinged');btn.disabled=false;},2200);
-  },1100);
+function setStepAct(i){
+  const el=document.getElementById('bs'+i);if(!el)return;
+  el.className='bs act';
+  document.getElementById('bst'+i).innerHTML='<span class="spin"></span>';
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function setStepDone(i){
+  const el=document.getElementById('bs'+i);if(!el)return;
+  el.className='bs done';
+  document.getElementById('bst'+i).innerHTML='<span class="chk">✓</span>';
 }
 
-let currentNode=null;
-function openConnectModal(idx){
-  currentNode=NODE_USERS[idx];
-  const textColor=(currentNode.color==='#FFFFFF'||currentNode.color==='#FFE600')?'#000':'#fff';
-  document.getElementById('nm-avatar').style.cssText=`width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:1.2rem;background:${currentNode.color}22;border:2px solid ${currentNode.color};color:${currentNode.color};`;
-  document.getElementById('nm-avatar').textContent=currentNode.name.charAt(0);
-  document.getElementById('nm-name').textContent=currentNode.name+' · '+currentNode.city;
-  document.getElementById('nm-id').textContent=currentNode.id;
-  document.getElementById('nm-input').value='';
-  const st=document.getElementById('nm-status');
-  st.style.display='none'; st.textContent='';
-  document.getElementById('node-modal').classList.add('show');
-}
-function closeNodeModal(){document.getElementById('node-modal').classList.remove('show');}
-function attemptConnect(){
-  const st=document.getElementById('nm-status');
-  st.style.display='block';
-  st.style.borderColor='rgba(0,200,255,.4)'; st.style.color='var(--b)';
-  st.textContent='◈ VERIFYING IPNOTEC ID...';
-  setTimeout(()=>{
-    st.style.borderColor='rgba(255,98,0,.4)'; st.style.color='var(--o)';
-    st.textContent='⊘ IPNOTEC VIP REQUIRED — GET YOUR ID TO CONNECT GLOBALLY';
-  },1600);
-}
-
-// ════════════════════════════════════════════
-// VIP PROFILE FLOW
-// ════════════════════════════════════════════
-function saveDOB(){
-  const v=document.getElementById('dob-in').value;
-  const err=document.getElementById('dob-err');
-  if(!v){err.classList.add('show');return;}
-  err.classList.remove('show');
-  S.dob=v;
-  makeDots('per-dots',3,1);
-  goTo('persona');
-}
-function savePersona(){
-  const err=document.getElementById('per-err');
-  if(!S.persona){err.classList.add('show');return;}
-  err.classList.remove('show');
-  setAccent(S.pColor);
-  makeDots('city-dots',3,2);
-  goTo('city');
-}
-function saveCity(){
-  const v=document.getElementById('city-in').value.trim();
-  const err=document.getElementById('city-err');
-  const valid=IATA_CITIES.some(c=>c.toLowerCase()===v.toLowerCase());
-  if(!v||!valid){err.classList.add('show');return;}
-  err.classList.remove('show');
-  S.city=v.toUpperCase();
-  const match=v.match(/\[([A-Z]{3})\]/i);
-  S.cityCode=match?match[1].toUpperCase():v.substring(0,3).toUpperCase();
-  startJourney();
-}
-
-// ════════════════════════════════════════════
-// JOURNEY ANIMATION
-// ════════════════════════════════════════════
-function startJourney(){
-  goTo('journey');
-  const col=S.pColor;
-
-  const jn=document.getElementById('j-persona-letter');
-  jn.innerText=S.persona.k;
-  jn.style.color=col;
-  jn.style.textShadow=`0 0 40px ${col},0 0 80px ${col}`;
-
-  const jc=document.getElementById('j-city');
-  jc.innerText='► '+S.cityCode+' · '+S.persona.n;
-  jc.style.color=col;
-  jc.style.textShadow=`0 0 18px ${col}`;
-
-  document.getElementById('j-pcard').innerHTML=`
-    <div class="pci"><span class="pck">DOB</span><span class="pcv" style="color:${col};">${S.dob}</span></div>
-    <div class="pci"><span class="pck">PERSONA</span><span class="pcv" style="color:${col};">${S.persona.k} · ${S.persona.n}</span></div>
-    <div class="pci"><span class="pck">CITY</span><span class="pcv" style="color:#fff;">${S.cityCode}</span></div>
-  `;
-
-  // Streams
-  const jst=document.getElementById('j-streams'); jst.innerHTML='';
-  const words=['01001101','IPNOTEC','10110010',S.persona.n,S.cityCode,'11000101','VIP//FUTURE','01110110','10010011','∞','2027','→'];
-  for(let i=0;i<18;i++){
-    const s=document.createElement('div'); s.className='dstream';
-    s.style.left=(Math.random()*96)+'%';
-    s.style.animationDelay=(Math.random()*5)+'s';
-    s.style.animationDuration=(3+Math.random()*4)+'s';
-    s.style.color=col+'35';
-    s.innerText=words[i%words.length];
-    jst.appendChild(s);
+function advanceBoot(){
+  initAC();
+  if(bootIdx===-1){
+    bootIdx=0;
+    document.getElementById('bootBtn').textContent='▸ CONFIRM & CONTINUE';
+    return;
   }
-
-  const statuses=[
-    'COMPUTING IDENTITY MATRIX...',
-    'ENCODING DATE OF BIRTH...',
-    `LINKING ${S.persona.n} PERSONA...`,
-    'MAPPING FUTURE CITY: '+S.cityCode+'...',
-    'SUMMING DOB DIGITS...',
-    'COMPUTING PHONE SIGNATURE...',
-    'CALCULATING UNIQUE IID...',
-    'GENERATING FUTURE TICKET...',
-    'TICKET READY — LOCK YOUR NAME ✓'
-  ];
-
-  let prog=0, si=0;
-  const pf=document.getElementById('j-pfill'), ps=document.getElementById('j-status');
-  pf.style.background=col; pf.style.boxShadow=`0 0 10px ${col}`;
-
-  const iv=setInterval(()=>{
-    prog+=1.0;
-    pf.style.width=Math.min(prog,100)+'%';
-    if(si<statuses.length&&prog>si*12){ps.innerText=statuses[si];si++;}
-    if(prog>=100){
-      clearInterval(iv);
-      setTimeout(()=>showTicket(),700);
-    }
-  },50);
-}
-
-// ════════════════════════════════════════════
-// TICKET SCREEN
-// ════════════════════════════════════════════
-function showTicket(){
-  // Compute IID
-  S.iid=calcIID(S.dob, S.phone);
-  S.ticketNumber=`TKT-${S.phone}-${S.iid}`;
-
-  // Ticket math display
-  const [y,m,d]=S.dob.split('-');
-  const dobStr=d+m+y;
-  const dobRaw=sumDigits(dobStr);
-  const dobRoot=digitalRoot(dobRaw);
-  const phoneRaw=sumDigits(S.phone);
-
-  document.getElementById('tkt-display').textContent=S.ticketNumber;
-  document.getElementById('tkt-math').innerHTML=`
-    <span>DOB ${dobStr} → ${dobRaw} → ROOT: ${dobRoot}</span><br>
-    <span>PHONE ${S.phone} → ${phoneRaw} → +${S.iid} → ROOT: ${dobRoot}</span><br>
-    <span style="color:var(--y);">IID = ${S.iid} &nbsp;·&nbsp; ROOTS CONVERGE AT ${dobRoot}</span>
-  `;
-
-  // Reset name lock UI
-  document.getElementById('fname-in').value='';
-  document.getElementById('avail-status').className='avail-status';
-  document.getElementById('locked-name').style.display='none';
-  document.getElementById('fname-err').classList.remove('show');
-  document.getElementById('btn-lock-name').disabled=true;
-  document.getElementById('btn-lock-name').style.opacity='.4';
-  document.getElementById('btn-lock-name').style.cursor='not-allowed';
-  document.getElementById('btn-lock-name').textContent='LOCK THIS IDENTITY';
-  document.getElementById('btn-proceed-pay').style.display='none';
-  S.nameLocked=false;
-
-  goTo('ticket');
-}
-
-let nameCheckTimer;
-function triggerNameCheck(){
-  const name=document.getElementById('fname-in').value.trim().toUpperCase();
-  const statusEl=document.getElementById('avail-status');
-  const lockBtn=document.getElementById('btn-lock-name');
-
-  lockBtn.disabled=true; lockBtn.style.opacity='.4'; lockBtn.style.cursor='not-allowed';
-  if(!name||name.length<2){statusEl.className='avail-status';return;}
-
-  statusEl.className='avail-status checking';
-  statusEl.textContent='◈ CHECKING AVAILABILITY...';
-
-  clearTimeout(nameCheckTimer);
-  nameCheckTimer=setTimeout(()=>{
-    if(TAKEN_NAMES.includes(name)){
-      statusEl.className='avail-status taken';
-      statusEl.textContent='✗ TAKEN — THIS NAME IS ALREADY REGISTERED';
-      lockBtn.disabled=true; lockBtn.style.opacity='.4'; lockBtn.style.cursor='not-allowed';
-    } else {
-      statusEl.className='avail-status available';
-      statusEl.textContent=`✓ AVAILABLE — "${name} [${S.cityCode}]" IS YOURS`;
-      lockBtn.disabled=false; lockBtn.style.opacity='1'; lockBtn.style.cursor='pointer';
-    }
-  },2000);
-}
-
-function lockName(){
-  if(S.nameLocked) return;
-  const name=document.getElementById('fname-in').value.trim().toUpperCase();
-  const err=document.getElementById('fname-err');
-  if(!name){err.classList.add('show');return;}
-  err.classList.remove('show');
-
-  S.fname=name;
-  S.fullFutureName=`${name} [${S.cityCode}]`;
-
-  const lockBtn=document.getElementById('btn-lock-name');
-  const locked=document.getElementById('locked-name');
-  const statusEl=document.getElementById('avail-status');
-  const inp=document.getElementById('fname-in');
-
-  lockBtn.style.display='none';
-  inp.disabled=true;
-  inp.style.opacity='.5';
-
-  statusEl.className='avail-status available';
-  statusEl.textContent='✓ IDENTITY LOCKED';
-
-  locked.textContent=`◆ ${S.fullFutureName}`;
-  locked.style.display='block';
-  S.nameLocked=true;
-
-  document.getElementById('btn-proceed-pay').style.display='flex';
-}
-
-// ════════════════════════════════════════════
-// PAYMENT
-// ════════════════════════════════════════════
-function proceedToPayment(){
-  document.getElementById('pay-fname-display').textContent=S.fullFutureName;
-  goTo('payment');
-}
-
-function processPayment(){
-  goTo('processing');
-  const frames=['◰','◳','◲','◱'];
-  let fi=0;
-  const fEl=document.getElementById('proc-frames');
-  const frameIv=setInterval(()=>{fEl.innerText=frames[fi++%4];},150);
-  const statuses=[
-    'INITIATING SECURE TRANSFER...',
-    'VERIFYING IDENTITY...',
-    'PROCESSING RS 1001...',
-    'SEALING FUTURE NAME...',
-    'ENCRYPTING TICKET...',
-    'ACTIVATING PINGG ACCESS...',
-    '✓ CONFIRMED'
-  ];
-  let pi=0;
-  const pEl=document.getElementById('proc-status');
-  const pIv=setInterval(()=>{
-    pEl.innerText=statuses[pi];
-    if(pi===statuses.length-1){
-      clearInterval(pIv); clearInterval(frameIv);
-      fEl.innerText='◆';
-      fEl.style.color='var(--g)'; fEl.style.textShadow='0 0 40px var(--g)';
-      pEl.style.color='var(--g)';
-      setTimeout(()=>{
-        document.getElementById('reveal-ticket').textContent=S.ticketNumber;
-        document.getElementById('reveal-name').textContent='◆ '+S.fullFutureName;
-        goTo('reveal');
-      },700);
-    }
-    pi++;
-  },650);
-}
-
-// ════════════════════════════════════════════
-// FINAL STREAMS
-// ════════════════════════════════════════════
-function spawnFinalStreams(){
-  const el=document.getElementById('final-streams'); el.innerHTML='';
-  for(let i=0;i<22;i++){
-    const s=document.createElement('div'); s.className='dstream';
-    s.style.left=(Math.random()*96)+'%';
-    s.style.animationDelay=(Math.random()*6)+'s';
-    s.style.animationDuration=(4+Math.random()*6)+'s';
-    s.style.color=VIBGYOR[i%VIBGYOR.length]+'28';
-    s.innerText=['01','10','1001','IPNOTEC','→','∞','2027','10:01'][i%8];
-    el.appendChild(s);
+  setStepDone(bootIdx);
+  bootIdx++;
+  if(bootIdx>=BOOT_DEF.length){
+    // Boot complete
+    setTimeout(()=>{snd.login();gotoScreen('s-id');setBadge('identity');},400);
+    return;
   }
+  if(bootIdx===4){
+    // PIN step
+    setStepAct(4);
+    updateProg();
+    document.getElementById('bootBtn').disabled=true;
+    document.getElementById('pinOv').classList.add('show');
+    pinStr='';updatePinDots();
+    return;
+  }
+  setStepAct(bootIdx);
+  updateProg();
+  snd.boot();
 }
 
-// ════════════════════════════════════════════
-// FOOTER
-// ════════════════════════════════════════════
-let _dateShowing=false;
-function toggleLaunchDate(){
-  _dateShowing=!_dateShowing;
-  document.getElementById('ftr-launch-txt').style.display=_dateShowing?'none':'';
-  document.getElementById('ftr-date-reveal').style.display=_dateShowing?'block':'none';
+function updateProg(){
+  document.getElementById('bootFill').style.width=((bootIdx+1)/BOOT_DEF.length*100)+'%';
 }
 
-function updateCountdown(){
-  const launch=new Date('2027-01-10T10:01:00+05:30').getTime();
-  const diff=launch-Date.now();
-  const el=document.getElementById('countdown'); if(!el)return;
-  if(diff<=0){el.innerText='LAUNCHING NOW ◆';el.style.color='var(--g)';return;}
-  const d=Math.floor(diff/86400000);
-  const h=Math.floor((diff%86400000)/3600000);
-  const m=Math.floor((diff%3600000)/60000);
-  const s=Math.floor((diff%60000)/1000);
-  el.innerText=`${d}D ${String(h).padStart(2,'0')}H ${String(m).padStart(2,'0')}M ${String(s).padStart(2,'0')}S`;
+function pinPress(k){
+  snd.key();
+  if(k==='⌫'){pinStr=pinStr.slice(0,-1);}
+  else if(k==='✓'){if(pinStr.length===4)pinConfirm();return;}
+  else{if(pinStr.length<4)pinStr+=k;}
+  updatePinDots();
+  if(pinStr.length===4)setTimeout(pinConfirm,200);
 }
-setInterval(updateCountdown,1000);
-updateCountdown();
+function updatePinDots(){
+  for(let i=0;i<4;i++)document.getElementById('pd'+i).className='pd'+(i<pinStr.length?' on':'');
+}
+function pinConfirm(){
+  snd.login();
+  document.getElementById('pinOv').classList.remove('show');
+  setStepDone(4);
+  bootIdx++;
+  setStepAct(bootIdx);
+  updateProg();
+  document.getElementById('bootBtn').disabled=false;
+}
+
+/* =====================================================
+   COLOR PICKER
+===================================================== */
+function buildClrGrid(){
+  const g=document.getElementById('clrGrid');
+  Object.values(CLRS).forEach(c=>{
+    const d=document.createElement('div');
+    d.className='clr-pick'+(c.id===userClr.id?' sel':'');
+    d.style.background=c.hex;
+    d.dataset.id=c.id;
+    d.onclick=()=>pickClr(c.id);
+    g.appendChild(d);
+  });
+}
+function pickClr(id){
+  userClr=CLRS[id];
+  document.querySelectorAll('.clr-pick').forEach(e=>e.classList.remove('sel'));
+  document.querySelector(`.clr-pick[data-id="${id}"]`).classList.add('sel');
+  applyUserClr();
+  snd.key();
+}
+function applyUserClr(){
+  document.documentElement.style.setProperty('--user-clr',userClr.hex);
+  const ib=document.getElementById('idBtn');if(ib){ib.style.background=userClr.hex;ib.style.color='#000';}
+  const bb=document.getElementById('bootBtn');if(bb){bb.style.background=userClr.hex;bb.style.color='#000';}
+  const sb=document.getElementById('sendBtn');
+  if(sb){sb.style.background=userClr.hex;sb.style.color=userClr.id==='w'||userClr.id==='y'?'#000':'#fff';}
+  const mi=document.getElementById('msgInput');
+  if(mi){mi.style.borderColor=userClr.hex+'55';}
+  colorKeyboard();
+}
+function colorKeyboard(){
+  const hex=userClr.hex;
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  document.documentElement.style.setProperty('--key-bg',`rgba(${r},${g},${b},0.1)`);
+  document.documentElement.style.setProperty('--key-border',`rgba(${r},${g},${b},0.3)`);
+  document.documentElement.style.setProperty('--key-clr',hex);
+  document.documentElement.style.setProperty('--key-press',`rgba(${r},${g},${b},0.38)`);
+  // Enter key stronger
+  const ek=document.querySelector('.enter-k');
+  if(ek){ek.style.background=`rgba(${r},${g},${b},0.22)`;ek.style.borderColor=`rgba(${r},${g},${b},0.55)`;}
+  // Send btn glow
+  const sb=document.getElementById('sendBtn');
+  if(sb){sb.style.boxShadow=`0 0 16px rgba(${r},${g},${b},0.45)`;}
+}
+
+/* =====================================================
+   ENTER COMMAND CENTER
+===================================================== */
+function enterMain(){
+  initAC();
+  const n=document.getElementById('nameIn').value.trim().toUpperCase();
+  if(!n){document.getElementById('nameIn').focus();return;}
+  userName=n;
+  snd.login();
+  buildMain();
+  gotoScreen('s-main');
+  setBadge('active');
+  sessionStart=Date.now();
+  setTimeout(()=>startBots(),3500);
+  setTimeout(()=>startNotifs(),9000);
+  snd.ambient();
+}
+
+/* =====================================================
+   BUILD MAIN COMMAND CENTER
+===================================================== */
+function buildMain(){
+  // CMD header
+  const d=document.getElementById('cmdDot');
+  d.style.background=userClr.hex;
+  d.style.boxShadow='0 0 8px '+userClr.hex;
+  document.getElementById('cmdName').textContent=userName;
+  document.getElementById('cmdName').style.color=userClr.hex;
+  applyUserClr(); // re-run to ensure keyboard + send btn are fully colored
+
+  // Bot bar
+  const bb=document.getElementById('botBar');
+  bb.innerHTML=BOTS.map(b=>`
+    <div class="btag" style="background:rgba(${h2r(b.hex)},0.07);border-color:rgba(${h2r(b.hex)},0.3);color:${b.hex}">
+      <div class="bdot" style="background:${b.hex}"></div>${b.name}
+    </div>`).join('');
+  // Welcome
+  addSys('◈ IPNOTEC PINGG COMMAND CENTER — SESSION ACTIVE ◈');
+  addBot('nexus','Session authenticated. Welcome, '+userName+'. Communications secured. All transmissions end-to-end encrypted.');
+}
+
+function h2r(hex){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return `${r},${g},${b}`;
+}
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+function addSys(txt){
+  const c=document.getElementById('chat');
+  const d=document.createElement('div');d.className='sys-msg';d.textContent=txt;
+  c.appendChild(d);scroll();
+}
+
+function addUser(txt){
+  const c=document.getElementById('chat');
+  const d=document.createElement('div');d.className='msg u';
+  const dname=anonMode?'':userName;
+  const dnameColor=anonMode?'transparent':(ipmMode?'#ffffff':userClr.hex);
+  const bubbleBg=ipmMode?'rgba(8,8,22,0.85)':userClr.hex;
+  const txtColor=ipmMode?userClr.hex:'#ffffff';
+  const mode=ipmMode?'mode-ipm':'mode-normal';
+  const borderL=ipmMode?`border-left:2px solid ${userClr.hex};`:'';
+  d.innerHTML=`
+    <div class="msg-hdr">
+      <span class="m-time">${now()}</span>
+      ${dname?`<span class="m-name" style="color:${dnameColor}">${dname}</span>`:''}
+      <div class="m-dot" style="background:${userClr.hex}"></div>
+    </div>
+    <div class="bubble ${mode}" style="background:${bubbleBg};color:${txtColor};${borderL}">${esc(txt)}</div>`;
+  c.appendChild(d);scroll();
+  msgCount++;snd.ping();flashEdge(userClr.hex);
+  // bot response
+  setTimeout(()=>botReply(txt),900+Math.random()*1600);
+}
+
+function addBot(botId,txt){
+  const bot=botById(botId);
+  const c=document.getElementById('chat');
+  // Thinking indicator
+  const tid='th'+Date.now()+Math.random();
+  const th=document.createElement('div');th.className='msg b';th.id=tid;
+  th.innerHTML=`
+    <div class="msg-hdr">
+      <div class="m-dot" style="background:${bot.hex}"></div>
+      <span class="m-name" style="color:${bot.hex}">${bot.name}</span>
+    </div>
+    <div class="thinking">
+      <div class="td" style="background:${bot.hex}"></div>
+      <div class="td" style="background:${bot.hex}"></div>
+      <div class="td" style="background:${bot.hex}"></div>
+    </div>`;
+  c.appendChild(th);scroll();
+  const delay=500+Math.random()*900;
+  setTimeout(()=>{
+    const el=document.getElementById(tid);if(el)el.remove();
+    // Now render full message
+    const nameColor=ipmMode?'#ffffff':bot.hex;
+    const bubbleBg=ipmMode?'rgba(8,8,22,0.85)':'rgba(255,255,255,0.04)';
+    const txtColor=ipmMode?bot.hex:'rgba(255,255,255,0.88)';
+    const mode=ipmMode?'mode-ipm':'mode-normal';
+    const borderStyle=ipmMode?`border-left:2px solid ${bot.hex};`:`border-left:2px solid ${bot.hex}40;`;
+    const m=document.createElement('div');m.className='msg b';
+    m.innerHTML=`
+      <div class="msg-hdr">
+        <div class="m-dot" style="background:${bot.hex}"></div>
+        <span class="m-name" style="color:${nameColor}">${bot.name}</span>
+        <span class="m-role">${bot.title}</span>
+        <span class="m-time">${now()}</span>
+      </div>
+      <div class="bubble ${mode}" style="background:${bubbleBg};color:${txtColor};${borderStyle}">${esc(txt)}</div>`;
+    c.appendChild(m);scroll();
+    msgCount++;snd.ping();flashEdge(bot.hex);lightKey(bot.name.charAt(0),bot.hex);
+  },delay);
+}
+
+function botReply(userTxt){
+  const lo=userTxt.toLowerCase();
+  let replyBot=BOTS[Math.floor(Math.random()*BOTS.length)];
+  let replyTxt=null;
+  for(const bot of BOTS){
+    for(const [kw,resp] of Object.entries(bot.resp)){
+      if(lo.includes(kw)){replyBot=bot;replyTxt=resp;break;}
+    }
+    if(replyTxt)break;
+  }
+  if(!replyTxt)replyTxt=replyBot.msgs[Math.floor(Math.random()*replyBot.msgs.length)];
+  addBot(replyBot.id,replyTxt);
+}
+
+/* =====================================================
+   AUTO BOT ACTIVITY
+===================================================== */
+function startBots(){
+  addBot('aria','Monitoring session. Calibrating to restricted-input environment. Cognitive signal: STRONG.');
+  schedBot();
+}
+function schedBot(){
+  botTimer=setTimeout(()=>{
+    const bot=BOTS[Math.floor(Math.random()*BOTS.length)];
+    addBot(bot.id,bot.msgs[Math.floor(Math.random()*bot.msgs.length)]);
+    schedBot();
+  },9000+Math.random()*13000);
+}
+
+/* =====================================================
+   SEND — native textarea
+===================================================== */
+function sendMsg(){
+  const inp=document.getElementById('msgInput');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  inp.value='';
+  inp.style.height='auto';
+  addUser(txt);
+}
+function handleEnter(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
+}
+function autoResize(el){
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,90)+'px';
+}
+function transmit(){
+  const bot=BOTS[Math.floor(Math.random()*BOTS.length)];
+  addBot(bot.id,bot.msgs[Math.floor(Math.random()*bot.msgs.length)]);
+}
+function clearChat(){
+  document.getElementById('chat').innerHTML='';
+  addSys('LOG CLEARED · READY FOR NEW TRANSMISSIONS');
+  snd.boot();
+}
+
+/* =====================================================
+   ANON MODE
+===================================================== */
+function toggleAnon(){
+  anonMode=!anonMode;
+  const tog=document.getElementById('anonTog');
+  const cn=document.getElementById('cmdName');
+  const al=document.getElementById('anonLbl');
+  const ab2=document.getElementById('anonBtn2');
+  tog.className='tog'+(anonMode?' on':'');
+  if(anonMode){
+    cn.classList.add('gone');
+    al.classList.add('show');
+    ab2.classList.add('anon-on');
+    addSys('◈ ANONYMOUS MODE ENABLED — IDENTITY MASKED');
+  } else {
+    cn.classList.remove('gone');
+    al.classList.remove('show');
+    ab2.classList.remove('anon-on');
+    addSys('◈ ANONYMOUS MODE DISABLED — IDENTITY RESTORED');
+  }
+  snd.key();
+}
+
+/* =====================================================
+   IPNOTEC MODE (IPM)
+   New msgs: username=white, text=profile color, bubble=dark glass
+   Toggle swaps back
+===================================================== */
+function toggleIPM(){
+  ipmMode=!ipmMode;
+  const btn=document.getElementById('ipmBtn');
+  if(ipmMode){
+    btn.classList.add('ipm-on');
+    btn.textContent='◐ IMODE ON';
+    addSys('◐ IPNOTEC MODE ACTIVE — USERNAME: WHITE · TEXT: PROFILE COLOR');
+  } else {
+    btn.classList.remove('ipm-on');
+    btn.textContent='◐ IMODE';
+    addSys('◐ IPNOTEC MODE OFF — STANDARD DISPLAY RESTORED');
+  }
+  snd.key();
+}
+
+/* =====================================================
+   KEY GLOW — first letter of sender
+===================================================== */
+let litKey=null, litTimer=null;
+function lightKey(letter,hex){
+  if(litKey){
+    litKey.classList.remove('lit');
+    litKey.style.color='';litKey.style.borderColor='';litKey.style.boxShadow='';
+  }
+  clearTimeout(litTimer);
+  const el=document.getElementById('k-'+letter.toLowerCase());
+  if(!el)return;
+  litKey=el;
+  el.classList.add('lit');
+  el.style.color=hex;
+  el.style.borderColor=hex;
+  el.style.boxShadow=`0 0 16px ${hex}, inset 0 0 8px ${hex}22, 0 2px 4px rgba(0,0,0,0.3)`;
+  litTimer=setTimeout(()=>{
+    el.classList.remove('lit');
+    el.style.color='';el.style.borderColor='';el.style.boxShadow='';
+    litKey=null;
+  },2200);
+}
+
+/* =====================================================
+   EDGE INDICATOR
+===================================================== */
+let edgeTm;
+function flashEdge(hex){
+  const e=document.getElementById('edgeInd');
+  e.style.backgroundColor=hex;e.style.boxShadow=`0 0 16px ${hex}`;e.style.opacity='1';
+  clearTimeout(edgeTm);
+  edgeTm=setTimeout(()=>e.style.opacity='0',1800);
+}
+
+/* =====================================================
+   FAKE NOTIFICATIONS
+===================================================== */
+const NOTIFS=[
+  {app:'WhatsApp',icon:'💬',bg:'#25D366',txt:'Marcus: Checked the deck — looks great!'},
+  {app:'Gmail',icon:'📧',bg:'#EA4335',txt:'Re: Q2 Budget — feedback attached'},
+  {app:'Slack',icon:'#',bg:'#4A154B',txt:'#general: Stand-up pushed to 4:30 PM'},
+  {app:'LinkedIn',icon:'in',bg:'#0A66C2',txt:'Sarah commented on your post about focus'},
+  {app:'Teams',icon:'T',bg:'#6264A7',txt:'Meeting: Product Review in 10 minutes'},
+  {app:'Instagram',icon:'📷',bg:'#E4405F',txt:'3 people liked your recent post'},
+  {app:'Calendar',icon:'📅',bg:'#1A73E8',txt:'Reminder: Investor Call in 15 min'},
+  {app:'Outlook',icon:'📩',bg:'#0078D4',txt:'New: Quarterly numbers from Alex'},
+  {app:'Notion',icon:'N',bg:'#fff',txt:'Shared with you: Q2 Roadmap v3'},
+  {app:'Telegram',icon:'✈',bg:'#26A5E4',txt:'John: Are you joining the call tonight?'},
+  {app:'Signal',icon:'🔒',bg:'#3A76F0',txt:'[Encrypted message from Emma]'},
+  {app:'Discord',icon:'◉',bg:'#5865F2',txt:'#announcements: New update deployed'},
+];
+let nQueue=[...NOTIFS],nActive=false,nTimer;
+function startNotifs(){showNotif();setInterval(()=>{if(!nActive)showNotif();},20000+Math.random()*12000);}
+function showNotif(){
+  if(nActive)return;
+  if(!nQueue.length)nQueue=[...NOTIFS];
+  const n=nQueue.splice(Math.floor(Math.random()*nQueue.length),1)[0];
+  document.getElementById('nIcon').textContent=n.icon;
+  document.getElementById('nIcon').style.background=n.bg;
+  document.getElementById('nIcon').style.color=n.bg==='#fff'?'#000':'#fff';
+  document.getElementById('nApp').textContent=n.app;
+  document.getElementById('nTxt').textContent=n.txt;
+  document.getElementById('nTime').textContent='now';
+  document.getElementById('notifWrap').classList.add('show');
+  nActive=true;snd.notif();
+  clearTimeout(nTimer);nTimer=setTimeout(dismissNotif,4500);
+}
+function dismissNotif(){
+  document.getElementById('notifWrap').classList.remove('show');
+  nActive=false;
+}
+
+/* =====================================================
+   EXIT SEQUENCE
+===================================================== */
+const EXIT_STEPS=[
+  'Flushing session tokens...',
+  'Releasing MDM policy lock...',
+  'Restoring OS notifications...',
+  'Closing network tunnel...',
+  'Uploading session audit log...',
+  'Biometric session signature applied...',
+  'Device returned to standard mode.',
+];
+function exitConfirm(){
+  initAC();
+  const ok=confirm('EXIT IPNOTEC PINGG?\n\nAll security policies will be released.\nSession audit will be logged.\n\nOK to exit securely.');
+  if(ok)runExit();
+}
+function runExit(){
+  clearTimeout(botTimer);
+  snd.exit();
+  gotoScreen('s-exit');
+  setBadge('exit');
+  const es=document.getElementById('exitSteps');
+  es.innerHTML=EXIT_STEPS.map((s,i)=>`<div class="esr" id="esr${i}"><span class="esr-ic">○</span>${s}</div>`).join('');
+  document.getElementById('exitStatus').style.color='var(--clr-r)';
+  document.getElementById('exitStatus').textContent='RELEASING POLICIES...';
+  let i=0;
+  function step(){
+    if(i>=EXIT_STEPS.length){exitDone();return;}
+    const e=document.getElementById('esr'+i);
+    e.classList.add('done');e.querySelector('.esr-ic').textContent='✓';
+    snd.boot();i++;setTimeout(step,460);
+  }
+  setTimeout(step,500);
+}
+function exitDone(){
+  const dur=Math.floor((Date.now()-sessionStart)/1000);
+  const m=Math.floor(dur/60),s=dur%60;
+  document.getElementById('exitStatus').textContent='SESSION ENDED SECURELY ✓';
+  document.getElementById('exitStatus').style.color='var(--clr-g)';
+  const sum=document.getElementById('exitSum');
+  sum.innerHTML=`
+    <div class="esr2"><span class="esl">CALLSIGN</span><span class="esv">${userName}</span></div>
+    <div class="esr2"><span class="esl">COLOR NODE</span><span class="esv" style="color:${userClr.hex}">${userClr.name}</span></div>
+    <div class="esr2"><span class="esl">SESSION TIME</span><span class="esv">${m}m ${s}s</span></div>
+    <div class="esr2"><span class="esl">MESSAGES</span><span class="esv">${msgCount}</span></div>
+    <div class="esr2"><span class="esl">ANON MODE</span><span class="esv">${anonMode?'ACTIVE':'INACTIVE'}</span></div>
+    <div class="esr2"><span class="esl">IPNOTEC MODE</span><span class="esv">${ipmMode?'ACTIVE':'INACTIVE'}</span></div>
+    <div class="esr2"><span class="esl">STATUS</span><span class="esv" style="color:var(--clr-g)">CLEAN EXIT ✓</span></div>`;
+  sum.classList.add('show');
+  const rb=document.getElementById('restartBtn');rb.style.display='block';
+  snd.confirm();
+}
+
+/* =====================================================
+   SCREEN + BADGE NAV
+===================================================== */
+function gotoScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function setBadge(mode){
+  const b=document.getElementById('sbBadge');
+  b.className='sb-mode-badge '+mode;
+  b.textContent={boot:'BOOT',identity:'SETUP',active:'ACTIVE',exit:'EXIT'}[mode]||mode.toUpperCase();
+}
+
+/* =====================================================
+   UTILS
+===================================================== */
+function now(){const n=new Date();return n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function scroll(){const c=document.getElementById('chat');if(c)c.scrollTop=c.scrollHeight;}
+
+/* =====================================================
+   INIT
+===================================================== */
+buildBoot();
+buildClrGrid();
+applyUserClr();
+
+// Name input — enter key submits
+document.getElementById('nameIn').addEventListener('keydown',function(e){
+  if(e.key==='Enter'){enterMain();}
+});
 </script>
 </body>
 </html>
